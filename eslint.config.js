@@ -26,7 +26,7 @@ import eslintPluginAstro from "eslint-plugin-astro"
 import boundaries from "eslint-plugin-boundaries"
 import canonical from "eslint-plugin-canonical"
 import compat from "eslint-plugin-compat"
-import functional from "eslint-plugin-functional"
+// import functional from "eslint-plugin-functional"
 import eslintPluginImportX from "eslint-plugin-import-x"
 import nodePlugin from "eslint-plugin-n"
 import onlyWarn from "eslint-plugin-only-warn"
@@ -225,17 +225,17 @@ export default [
   compat.configs["flat/recommended"],
 
   // NOTE: Functional style
-  functional.configs.recommended,
-  {
-    rules: {
-      "functional/no-throw-statements": [1, { allowToRejectPromises: true }],
-      "functional/prefer-immutable-types": 0,
-      "functional/no-classes": 0,
-      "functional/no-this-expressions": 0,
-      "functional/no-conditional-statements": 0,
-      "functional/no-expression-statements": 0,
-    },
-  },
+  // functional.configs.recommended,
+  // {
+  //   rules: {
+  //     "functional/no-throw-statements": [1, { allowToRejectPromises: true }],
+  //     "functional/prefer-immutable-types": 0,
+  //     "functional/no-classes": 0,
+  //     "functional/no-this-expressions": 0,
+  //     "functional/no-conditional-statements": 0,
+  //     "functional/no-expression-statements": 0,
+  //   },
+  // },
 
   // NOTE: MVC architecture
   {
