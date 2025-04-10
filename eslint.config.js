@@ -139,7 +139,7 @@ export default [
       "tree-shaking": fixupPluginRules(treeShaking),
     },
     rules: {
-      "tree-shaking/no-side-effects-in-initialization": 1,
+      "tree-shaking/no-side-effects-in-initialization": 0,
     },
   },
 
