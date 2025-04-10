@@ -116,8 +116,8 @@ export default [
     compat.extends(
       // "eslint-config-auto",
       // "eslint-config-hardcore",
-      "hardcore/fp",
-      "hardcore/ts",
+      // "hardcore/fp",
+      // "hardcore/ts",
     ),
   ),
 
