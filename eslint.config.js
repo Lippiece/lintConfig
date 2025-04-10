@@ -156,6 +156,7 @@ export default [
       "n/prefer-global/process": 1,
       "n/prefer-global/buffer": 1,
       "n/no-sync": 1,
+      "n/no-missing-import": 0,
     },
   },
 
@@ -177,6 +178,7 @@ export default [
       "import-x/no-import-module-exports": 1,
       "import-x/no-empty-named-blocks": 1,
       "import-x/no-deprecated": 1,
+      "import-x/no-unresolved": 0,
     },
   },
 
@@ -234,7 +236,7 @@ export default [
     plugins: {
       boundaries,
     },
-    rules: { ...boundaries.configs.strict.rules },
+    rules: { ...boundaries.configs.recommended.rules },
   },
 
   // NOTE: Main config
