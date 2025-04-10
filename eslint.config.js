@@ -179,6 +179,7 @@ export default [
       "import-x/no-empty-named-blocks": 1,
       "import-x/no-deprecated": 1,
       "import-x/no-unresolved": 0,
+      "import-x/no-duplicates": 0,
     },
   },
 
@@ -586,6 +587,8 @@ export default [
   {
     rules: {
       "svelte/no-unused-class-name": 0,
+      "svelte/block-lang": [1, { script: "ts" }],
+      "functional/no-let": 0
     },
   },
 ]
