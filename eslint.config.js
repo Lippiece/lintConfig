@@ -1,5 +1,3 @@
-import path from "node:path"
-import { fileURLToPath } from "node:url"
 import {
   combine,
   ignores,
@@ -15,19 +13,21 @@ import {
   vue,
   yaml,
 } from "@antfu/eslint-config"
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat"
-import { FlatCompat } from "@eslint/eslintrc"
+import { fixupPluginRules } from "@eslint/compat"
 import js from "@eslint/js"
 import html from "@html-eslint/eslint-plugin"
+import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin-ts"
 import astroParser from "astro-eslint-parser"
 import biome from "eslint-config-biome"
 import alignAssignments from "eslint-plugin-align-assignments"
+import arrayFunc from "eslint-plugin-array-func"
 import eslintPluginAstro from "eslint-plugin-astro"
+import boundaries from "eslint-plugin-boundaries"
 import canonical from "eslint-plugin-canonical"
+import compat from "eslint-plugin-compat"
+import functional from "eslint-plugin-functional"
 import eslintPluginImportX from "eslint-plugin-import-x"
-
-import stylisticJs from "@stylistic/eslint-plugin-js"
 import nodePlugin from "eslint-plugin-n"
 import onlyWarn from "eslint-plugin-only-warn"
 import oxlint from "eslint-plugin-oxlint"
@@ -42,19 +42,12 @@ import svelte from "eslint-plugin-svelte"
 import treeShaking from "eslint-plugin-tree-shaking"
 import eslintPluginUnicorn from "eslint-plugin-unicorn"
 import pluginVue from "eslint-plugin-vue"
+import eslintPluginVueScopedCSS from "eslint-plugin-vue-scoped-css"
+import pluginVueA11y from "eslint-plugin-vuejs-accessibility"
 import { configs as wc } from "eslint-plugin-wc"
 import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
 import tseslint from "typescript-eslint"
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  allConfig: js.configs.all,
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  resolvePluginsRelativeTo: __dirname,
-})
 
 const antfu = await combine(
   // comments(),
@@ -73,10 +66,10 @@ const antfu = await combine(
 )
 
 export default [
-  // Opinionated
+  // NOTE: Opinionated
   ...antfu,
 
-  // Global
+  // NOTE: Global
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -115,27 +108,16 @@ export default [
   ...eslintPluginAstro.configs.all,
   pluginSecurity.configs.recommended,
 
-  // Web Components
+  // NOTE: Web Components
   wc["flat/recommended"],
   wc["flat/best-practice"],
 
-  ...fixupConfigRules(
-    compat.extends(
-      // "eslint-config-auto",
-      // "eslint-config-hardcore",
-      // "hardcore/fp",
-      // "hardcore/ts",
-    ),
-  ),
   {
     plugins: {
       "@stylistic/ts": stylistic,
-      "@stylistic/js": stylisticJs,
     },
 
     rules: {
-      "@stylistic/js/quotes": 0,
-
       "@stylistic/ts/key-spacing": [1, { align: {}, multiLine: {} }],
 
       "@stylistic/ts/padding-line-between-statements": [
@@ -148,11 +130,7 @@ export default [
           prev: ["const", "let", "var"],
         },
       ],
-      "@stylistic/js/implicit-arrow-linebreak": 1,
       "@stylistic/ts/member-delimiter-style": 1,
-      "@stylistic/js/no-confusing-arrow": 1,
-      "@stylistic/js/nonblock-statement-body-position": 1,
-      "@stylistic/js/one-var-declaration-per-line": 1,
     },
   },
 
@@ -217,12 +195,50 @@ export default [
 
   pluginPromise.configs["flat/recommended"],
 
-  // Remove redundant rules
+  // NOTE: Remove redundant rules
   biome,
   ...oxlint.configs["flat/all"],
 
+  // NOTE: SDL (security and performance)
+  ...pluginMicrosoftSdl.configs.typescript,
+  ...pluginMicrosoftSdl.configs.common,
+
+  // NOTE: `Array` functions
   {
-    // Files: ['**/*.ts, **/*.js, **/*.vue, **/*.astro'],
+    plugins: {
+      "array-func": arrayFunc,
+    },
+    rules: {
+      "array-func/prefer-flat": 1,
+      "array-func/from-map": 1,
+      "array-func/no-unnecessary-this-arg": 1,
+      "array-func/prefer-array-from": 1,
+      "array-func/avoid-reverse": 1,
+      "array-func/prefer-flat-map": 1,
+    },
+  },
+
+  // NOTE: Browser compatibility
+  compat.configs["flat/recommended"],
+
+  // NOTE: Functional style
+  functional.configs.all,
+  {
+    rules: {
+      "functional/no-throw-statements": [1, { allowToRejectPromises: true }],
+    },
+  },
+
+  // NOTE: MVC architecture
+  {
+    plugins: {
+      boundaries,
+    },
+    rules: { ...boundaries.configs.strict.rules },
+  },
+
+  // NOTE: Main config
+  {
     languageOptions: {
       ecmaVersion: "latest",
 
@@ -241,9 +257,6 @@ export default [
 
         extraFileExtensions: "vue",
         projectService: true,
-
-        // Project: "tsconfig.json",
-        // Project: "/home/lippiece/tsconfig.json",
       },
 
       sourceType: "module",
@@ -263,17 +276,6 @@ export default [
       "promise/always-return": 0,
       "promise/no-return-in-finally": 0,
       "promise/no-multiple-resolved": 0,
-      "import/export": 0,
-      "import/no-deprecated": 0,
-      "import/no-relative-packages": 0,
-      "import/no-import-module-exports": 0,
-      "import/no-empty-named-blocks": 0,
-      "import/no-useless-path-segments": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/named": 0,
-      "import/newline-after-import": 0,
-      "import/extensions": 0,
-      "import/no-unresolved": 0,
       "max-statements": [0, { max: 15 }],
       "no-warning-comments": 0,
 
@@ -329,9 +331,7 @@ export default [
       "max-lines": 0,
       "no-multi-spaces": 0,
       "no-ternary": 0,
-
       "no-undef": 0,
-
       "no-underscore-dangle": [
         1,
         {
@@ -414,8 +414,6 @@ export default [
       "jsdoc/text-escaping": 1,
 
       "jsonc/auto": 1,
-
-      "node/prefer-node-protocol": 1,
     },
   },
 
@@ -484,6 +482,8 @@ export default [
   ...pluginVue.configs["flat/essential"],
   ...pluginVue.configs["flat/recommended"],
   ...pluginVue.configs["flat/strongly-recommended"],
+  ...pluginVueA11y.configs["flat/recommended"],
+  ...eslintPluginVueScopedCSS.configs["flat/recommended"],
   {
     files: ["*.vue", "**/*.vue"],
 
