@@ -168,11 +168,11 @@ export default [
     rules: {
       "import-x/no-namespace": 1,
       "import-x/no-relative-packages": 1,
-      "import-x/no-relative-parent-imports": 1,
+      "import-x/no-relative-parent-imports": 0,
       "import-x/no-cycle": 1,
       "import-x/no-commonjs": 1,
       "import-x/no-amd": 1,
-      "import-x/order": 1,
+      "import-x/order": 0,
       "import-x/newline-after-import": 1,
       "import-x/no-useless-path-segments": 1,
       "import-x/no-import-module-exports": 1,
@@ -191,7 +191,7 @@ export default [
       "canonical/no-barrel-import": 1,
       "canonical/no-export-all": 1,
       "canonical/prefer-import-alias": 1,
-      "canonical/prefer-inline-type-import": 1,
+      "canonical/prefer-inline-type-import": 0,
     },
   },
 
@@ -224,10 +224,15 @@ export default [
   compat.configs["flat/recommended"],
 
   // NOTE: Functional style
-  functional.configs.all,
+  functional.configs.recommended,
   {
     rules: {
       "functional/no-throw-statements": [1, { allowToRejectPromises: true }],
+      "functional/prefer-immutable-types": 0,
+      "functional/no-classes": 0,
+      "functional/no-this-expressions": 0,
+      "functional/no-conditional-statements": 0,
+      "functional/no-expression-statements": 0,
     },
   },
 
@@ -321,8 +326,6 @@ export default [
       "drizzle/enforce-delete-with-where": 0,
       "etc/no-misused-generics": 0,
       "func-style": [1, "expression"],
-      "functional/no-classes": 0,
-      "functional/no-this-expressions": 0,
       "import/no-unused-modules": "off",
       "import/unambiguous": 0,
       indent: 0,
@@ -348,6 +351,7 @@ export default [
       "putout/putout": 0,
       quotes: 0,
       semi: 0,
+      "no-inline-comments": 0,
       "sort-keys": 0,
       "sort-keys-fix/sort-keys-fix": 1,
       "style/quotes": 0,
@@ -395,8 +399,10 @@ export default [
       "ts/require-array-sort-compare": 1,
       "ts/switch-exhaustiveness-check": 1,
       "ts/typedef": 1,
+      "@typescript-eslint/prefer-readonly-parameter-types": 0,
 
       "antfu/import-dedupe": 1,
+      "antfu/no-top-level-await": 0,
 
       "jsdoc/check-line-alignment": 1,
       "jsdoc/match-name": 1,
