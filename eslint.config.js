@@ -568,12 +568,6 @@ export default [
         projectService: true,
         extraFileExtensions: [".svelte"], // Add support for additional file extensions, such as .svelte
         parser: tseslint.parser,
-        // Specify a parser for each language, if needed:
-        // parser: {
-        //   ts: ts.parser,
-        //   js: espree,    // Use espree for .js files (add: import espree from 'espree')
-        //   typescript: ts.parser
-        // },
 
         // We recommend importing and specifying svelte.config.js.
         // By doing so, some rules in eslint-plugin-svelte will automatically read the configuration and adjust their behavior accordingly.
@@ -585,8 +579,7 @@ export default [
   },
   {
     rules: {
-      // Override or add rule settings here, such as:
-      // 'svelte/rule-name': 'error'
+      "svelte/no-unused-class-name": 0,
     },
   },
 ]
