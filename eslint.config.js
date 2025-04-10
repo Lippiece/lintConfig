@@ -25,15 +25,19 @@ import biome from "eslint-config-biome"
 import alignAssignments from "eslint-plugin-align-assignments"
 import eslintPluginAstro from "eslint-plugin-astro"
 import canonical from "eslint-plugin-canonical"
+import eslintPluginImportX from "eslint-plugin-import-x"
+
+import stylisticJs from "@stylistic/eslint-plugin-js"
+import nodePlugin from "eslint-plugin-n"
 import onlyWarn from "eslint-plugin-only-warn"
 import oxlint from "eslint-plugin-oxlint"
 import perfectionist from "eslint-plugin-perfectionist"
 import preferArrow from "eslint-plugin-prefer-arrow-functions"
+import pluginPromise from "eslint-plugin-promise"
 import readableTailwind from "eslint-plugin-readable-tailwind"
 import pluginSecurity from "eslint-plugin-security"
 import sonarjs from "eslint-plugin-sonarjs"
 import sortKeysFix from "eslint-plugin-sort-keys-fix"
-import eslintPluginSvelte from "eslint-plugin-svelte"
 import svelte from "eslint-plugin-svelte"
 import treeShaking from "eslint-plugin-tree-shaking"
 import eslintPluginUnicorn from "eslint-plugin-unicorn"
@@ -41,8 +45,6 @@ import pluginVue from "eslint-plugin-vue"
 import { configs as wc } from "eslint-plugin-wc"
 import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
-import neostandard from "neostandard"
-import * as svelteParser from "svelte-eslint-parser"
 import tseslint from "typescript-eslint"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -75,15 +77,20 @@ export default [
   ...antfu,
 
   // Global
+  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   ...tseslint.configs.all,
   js.configs.all,
+
+  eslintPluginUnicorn.configs.all,
+  eslintPluginUnicorn.configs.recommended,
   {
-    ...eslintPluginUnicorn.configs.all,
     rules: {
       "unicorn/expiring-todo-comments": 0,
       "unicorn/filename-case": 0,
       "unicorn/prevent-abbreviations": [
-        "error",
+        1,
         {
           replacements: {
             props: false,
@@ -92,21 +99,21 @@ export default [
           },
         },
       ],
-    }
+    },
   },
+
+  sonarjs.configs.recommended,
   {
-    ...sonarjs.configs.recommended,
     rules: {
       "sonarjs/no-unknown-property": 0,
       "sonarjs/prefer-nullish-coalescing": 0,
       "sonarjs/rules-of-hooks": 0,
-    }
+    },
   },
+
   perfectionist.configs["recommended-natural"],
-  canonical.configs["flat/recommended"],
   ...eslintPluginAstro.configs.all,
   pluginSecurity.configs.recommended,
-  ...neostandard(),
 
   // Web Components
   wc["flat/recommended"],
@@ -120,6 +127,95 @@ export default [
       // "hardcore/ts",
     ),
   ),
+  {
+    plugins: {
+      "@stylistic/ts": stylistic,
+      "@stylistic/js": stylisticJs,
+    },
+
+    rules: {
+      "@stylistic/js/quotes": 0,
+
+      "@stylistic/ts/key-spacing": [1, { align: {}, multiLine: {} }],
+
+      "@stylistic/ts/padding-line-between-statements": [
+        1,
+        { blankLine: "always", next: "return", prev: "*" },
+        { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
+        {
+          blankLine: "any",
+          next: ["const", "let", "var"],
+          prev: ["const", "let", "var"],
+        },
+      ],
+      "@stylistic/js/implicit-arrow-linebreak": 1,
+      "@stylistic/ts/member-delimiter-style": 1,
+      "@stylistic/js/no-confusing-arrow": 1,
+      "@stylistic/js/nonblock-statement-body-position": 1,
+      "@stylistic/js/one-var-declaration-per-line": 1,
+    },
+  },
+
+  {
+    plugins: {
+      "tree-shaking": fixupPluginRules(treeShaking),
+    },
+    rules: {
+      "tree-shaking/no-side-effects-in-initialization": 1,
+    },
+  },
+
+  nodePlugin.configs["flat/recommended-script"],
+  {
+    rules: {
+      "n/prefer-promises/fs": 1,
+      "n/prefer-promises/dns": 1,
+      "n/prefer-node-protocol": 1,
+      "n/prefer-global/url": 1,
+      "n/prefer-global/url-search-params": 1,
+      "n/prefer-global/text-encoder": 1,
+      "n/prefer-global/text-decoder": 1,
+      "n/prefer-global/process": 1,
+      "n/prefer-global/buffer": 1,
+      "n/no-sync": 1,
+    },
+  },
+
+  eslintPluginImportX.flatConfigs.recommended,
+  eslintPluginImportX.flatConfigs.typescript,
+  eslintPluginImportX.flatConfigs.errors,
+  eslintPluginImportX.flatConfigs.warnings,
+  {
+    rules: {
+      "import-x/no-namespace": 1,
+      "import-x/no-relative-packages": 1,
+      "import-x/no-relative-parent-imports": 1,
+      "import-x/no-cycle": 1,
+      "import-x/no-commonjs": 1,
+      "import-x/no-amd": 1,
+      "import-x/order": 1,
+      "import-x/newline-after-import": 1,
+      "import-x/no-useless-path-segments": 1,
+      "import-x/no-import-module-exports": 1,
+      "import-x/no-empty-named-blocks": 1,
+      "import-x/no-deprecated": 1,
+    },
+  },
+
+  canonical.configs["flat/recommended"],
+  {
+    rules: {
+      "canonical/destructuring-property-newline": 0,
+      "canonical/export-specifier-newline": 0,
+      "canonical/import-specifier-newline": 0,
+      "canonical/no-barrel-import": 1,
+      "canonical/no-export-all": 1,
+      "canonical/prefer-import-alias": 1,
+      "canonical/prefer-inline-type-import": 1,
+    },
+  },
+
+  pluginPromise.configs["flat/recommended"],
 
   // Remove redundant rules
   biome,
@@ -160,7 +256,6 @@ export default [
       "prefer-arrow-functions": fixupPluginRules(preferArrow),
       "readable-tailwind": readableTailwind,
       "sort-keys-fix": fixupPluginRules(sortKeysFix),
-      "tree-shaking": fixupPluginRules(treeShaking),
       "write-good-comments": fixupPluginRules(writeGoodComments),
     },
 
@@ -177,14 +272,9 @@ export default [
       "import/no-extraneous-dependencies": 0,
       "import/named": 0,
       "import/newline-after-import": 0,
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/no-magic-numbers": 0,
-      "@typescript-eslint/promise-function-async": 0,
-      "@typescript-eslint/strict-boolean-expressions": 0,
       "import/extensions": 0,
       "import/no-unresolved": 0,
       "max-statements": [0, { max: 15 }],
-      "no-underscore-dangle": 0,
       "no-warning-comments": 0,
 
       "prefer-arrow-functions/prefer-arrow-functions": [
@@ -203,26 +293,6 @@ export default [
       ...readableTailwind.configs.warning.rules,
       "@microsoft/sdl/no-html-method": 0,
 
-      "@stylistic/quotes": 0,
-
-      "@stylistic/ts/key-spacing": [
-        1,
-        {
-          align: "colon",
-        },
-      ],
-
-      "@stylistic/ts/padding-line-between-statements": [
-        1,
-        { blankLine: "always", next: "return", prev: "*" },
-        { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
-        {
-          blankLine: "any",
-          next: ["const", "let", "var"],
-          prev: ["const", "let", "var"],
-        },
-      ],
-
       // Disable
       "@typescript-eslint/consistent-type-imports": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
@@ -239,20 +309,8 @@ export default [
         },
       ],
 
-      "@typescript-eslint/no-non-null-assertion": 0,
-      "@typescript-eslint/no-unsafe-argument": 0,
-      "@typescript-eslint/no-unsafe-assignment": 0,
-      "@typescript-eslint/no-unsafe-call": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0,
-      "@typescript-eslint/no-unused-expressions": 0,
-      "@typescript-eslint/no-unused-vars": 0,
-      "@typescript-eslint/prefer-nullish-coalescing": 0,
-      "@typescript-eslint/prefer-readonly-parameter-types": 0,
       "align-assignments/align-assignments": 1,
       camelcase: 0,
-      "canonical/destructuring-property-newline": 0,
-      "canonical/export-specifier-newline": 0,
-      "canonical/import-specifier-newline": 0,
       "capitalized-comments": 0,
       "comma-dangle": 0,
       "compat/compat": 0,
@@ -298,6 +356,66 @@ export default [
       "unused-imports/no-unused-vars": 0,
       "write-good-comments/write-good-comments": 1,
       "xss/no-mixed-html": 0,
+
+      "ts/adjacent-overload-signatures": 1,
+      "ts/array-type": [
+        1,
+        {
+          default: "array-simple",
+        },
+      ],
+      "ts/explicit-module-boundary-types": 0,
+      "ts/no-magic-numbers": 0,
+      "ts/promise-function-async": 0,
+      "ts/strict-boolean-expressions": 0,
+      "ts/no-non-null-assertion": 0,
+      "ts/no-unsafe-argument": 0,
+      "ts/no-unsafe-assignment": 0,
+      "ts/no-unsafe-call": 0,
+      "ts/no-unsafe-member-access": 0,
+      "ts/no-unused-expressions": 0,
+      "ts/no-unused-vars": 0,
+      "ts/prefer-nullish-coalescing": 0,
+      "ts/prefer-readonly-parameter-types": 0,
+      "ts/consistent-generic-constructors": 1,
+      "ts/consistent-indexed-object-style": 1,
+      "ts/consistent-type-assertions": 1,
+      "ts/consistent-type-exports": 1,
+      "ts/default-param-last": 1,
+      "ts/dot-notation": 1,
+      "ts/await-thenable": 1,
+      "ts/explicit-member-accessibility": 1,
+      "ts/no-array-delete": 1,
+      "ts/no-unnecessary-qualifier": 1,
+      "ts/no-unsafe-type-assertion": 1,
+      "ts/no-useless-empty-export": 1,
+      "ts/prefer-destructuring": 1,
+      "ts/require-array-sort-compare": 1,
+      "ts/switch-exhaustiveness-check": 1,
+      "ts/typedef": 1,
+
+      "antfu/import-dedupe": 1,
+
+      "jsdoc/check-line-alignment": 1,
+      "jsdoc/match-name": 1,
+      "jsdoc/no-bad-blocks": 1,
+      "jsdoc/no-blank-block-descriptions": 1,
+      "jsdoc/no-blank-blocks": 1,
+      "jsdoc/no-missing-syntax": 1,
+      "jsdoc/no-types": 1,
+      "jsdoc/require-description-complete-sentence": 1,
+      "jsdoc/require-description": 1,
+      "jsdoc/require-example": 1,
+      "jsdoc/require-hyphen-before-param-description": 1,
+      "jsdoc/require-jsdoc": 1,
+      "jsdoc/require-template": 1,
+      "jsdoc/sort-tags": 1,
+      "jsdoc/tag-lines": 1,
+      "jsdoc/text-escaping": 1,
+
+      "jsonc/auto": 1,
+
+      "node/prefer-node-protocol": 1,
     },
   },
 
@@ -311,8 +429,38 @@ export default [
 
   // HTML
   {
-    ...html.configs["flat/recommended"],
+    ...html.configs["flat/all"],
     files: ["**/*.html"],
+    rules: {
+      "@html-eslint/no-inline-styles": 1,
+      "@html-eslint/no-extra-spacing-text": 1,
+      "@html-eslint/no-skip-heading-levels": 1,
+      "@html-eslint/id-naming-convention": 1,
+      "@html-eslint/require-attrs": 1,
+      "@html-eslint/require-meta-description": 1,
+      "@html-eslint/require-frame-title": 1,
+      "@html-eslint/no-non-scalable-viewport": 1,
+      "@html-eslint/no-positive-tabindex": 1,
+      "@html-eslint/require-meta-viewport": 1,
+      "@html-eslint/require-meta-charset": 1,
+      "@html-eslint/no-target-blank": 1,
+      "@html-eslint/no-abstract-roles": 1,
+      "@html-eslint/require-button-type": 1,
+      "@html-eslint/no-aria-hidden-body": 1,
+      "@html-eslint/no-multiple-empty-lines": 1,
+      "@html-eslint/no-accesskey-attrs": 1,
+      "@html-eslint/no-heading-inside-button": 1,
+      "@html-eslint/no-invalid-role": 1,
+      "@html-eslint/no-nested-interactive": 1,
+      "@html-eslint/lowercase": 1,
+      "@html-eslint/require-open-graph-protocol": 1,
+      "@html-eslint/require-form-method": 1,
+      "@html-eslint/sort-attrs": 1,
+      "@html-eslint/prefer-https": 1,
+      "@html-eslint/require-input-label": 1,
+      "@html-eslint/max-element-depth": 1,
+      "@html-eslint/require-explicit-size": 1,
+    },
   },
 
   {
@@ -353,6 +501,50 @@ export default [
       "readable-tailwind/multiline": 0,
       "sonarjs/pluginRules-of-hooks": 0,
       "sonarjs/sonar-no-fallthrough": 0,
+      "vue/html-comment-content-newline": 1,
+      "vue/html-comment-indent": 1,
+      "vue/define-emits-declaration": 1,
+      "vue/component-api-style": 1,
+      "vue/define-props-declaration": 1,
+      "vue/html-button-has-type": 1,
+      "vue/max-template-depth": 1,
+      "vue/max-props": 1,
+      "vue/max-lines-per-block": 1,
+      "vue/new-line-between-multi-line-property": 1,
+      "vue/next-tick-style": 1,
+      "vue/no-bare-strings-in-template": 1,
+      "vue/no-boolean-default": 1,
+      "vue/no-duplicate-attr-inheritance": 1,
+      "vue/no-implicit-coercion": 1,
+      "vue/no-import-compiler-macros": 1,
+      "vue/no-multiple-objects-in-class": 1,
+      "vue/no-multiple-template-root": 1,
+      "vue/no-ref-object-reactivity-loss": 1,
+      "vue/no-root-v-if": 1,
+      "vue/no-static-inline-styles": 1,
+      "vue/no-template-target-blank": 1,
+      "vue/no-undef-components": 1,
+      "vue/no-undef-properties": 1,
+      "vue/no-unused-emit-declarations": 1,
+      "vue/no-unused-properties": 1,
+      "vue/no-use-v-else-with-v-for": 1,
+      "vue/no-useless-concat": 1,
+      "vue/no-useless-mustaches": 1,
+      "vue/no-v-text": 1,
+      "vue/padding-line-between-tags": 1,
+      "vue/padding-lines-in-component-definition": 1,
+      "vue/prefer-define-options": 1,
+      "vue/prefer-true-attribute-shorthand": 1,
+      "vue/prefer-use-template-ref": 1,
+      "vue/require-emit-validator": 1,
+      "vue/require-macro-variable-name": 1,
+      "vue/require-typed-object-prop": 1,
+      "vue/require-typed-ref": 1,
+      "vue/slot-name-casing": 1,
+      "vue/static-class-names-order": 1,
+      "vue/v-for-delimiter-style": 1,
+      "vue/v-if-else-key": 1,
+      "vue/v-on-handler-style": 1,
     },
   },
 
@@ -362,17 +554,17 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
-    }
+        ...globals.node,
+      },
+    },
   },
   {
-    files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
+    files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
     // See more details at: https://typescript-eslint.io/packages/parser/
     languageOptions: {
       parserOptions: {
         projectService: true,
-        extraFileExtensions: ['.svelte'], // Add support for additional file extensions, such as .svelte
+        extraFileExtensions: [".svelte"], // Add support for additional file extensions, such as .svelte
         parser: tseslint.parser,
         // Specify a parser for each language, if needed:
         // parser: {
@@ -386,13 +578,13 @@ export default [
         // While certain Svelte settings may be statically loaded from svelte.config.js even if you don’t specify it,
         // explicitly specifying it ensures better compatibility and functionality.
         // svelteConfig
-      }
-    }
+      },
+    },
   },
   {
     rules: {
       // Override or add rule settings here, such as:
       // 'svelte/rule-name': 'error'
-    }
-  }
+    },
+  },
 ]
