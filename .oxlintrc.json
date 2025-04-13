@@ -1,0 +1,55 @@
+{
+  "plugins": [
+    "unicorn",
+    "typescript",
+    "oxc",
+    "oxc-security",
+    "eslint-plugin-promise"
+  ],
+  "categories": {
+    "correctness": "warn",
+    "nursery": "warn",
+    "pedantic": "warn",
+    "restriction": "warn",
+    "style": "warn",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "no-async-await": 0,
+    "yoda": 0,
+    "unicorn/no-null": 0,
+    "no-undef": 0,
+    "max-lines-per-function": [
+      1,
+      {
+        "max": 50,
+        "skipBlankLines": true,
+        "skipComments": true,
+        "IIFEs": true
+      }
+    ],
+    "max-depth": [
+      2,
+      {
+        "max": 4
+      }
+    ],
+    "explicit-function-return-type": 0,
+    "no-rest-spread-properties": 0,
+    "no-optional-chaining": 0,
+    "no-ternary": 0,
+    "sort-imports": 0,
+    "filename-case": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.astro",
+        "*.svelte"
+      ],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "include": [
+    "**/*.vue",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*",
+    "./*",
+    "src/*",
+    "eslint.config.js"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "strictNullChecks": true,
+    "jsx": "react"
+  }
+}

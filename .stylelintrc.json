@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "stylelint-config-html",
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended-vue"
+  ],
+  "plugins": ["stylelint-order", "stylelint-config-rational-order/plugin"],
+  "rules": {
+    "order/properties-order": [],
+    "declaration-empty-line-before": null,
+    "plugin/rational-order": [
+      true,
+      {
+        "empty-line-between-groups": true
+      }
+    ]
+  }
+}

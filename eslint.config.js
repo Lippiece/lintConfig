@@ -400,6 +400,7 @@ export default [
       "ts/require-array-sort-compare": 1,
       "ts/switch-exhaustiveness-check": 1,
       "ts/typedef": 1,
+      "@typescript-eslint/no-unused-vars": 0,
       "@typescript-eslint/prefer-readonly-parameter-types": 0,
 
       "antfu/import-dedupe": 1,
