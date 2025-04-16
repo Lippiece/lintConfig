@@ -130,7 +130,14 @@ export default [
           prev: ["const", "let", "var"],
         },
       ],
-      "@stylistic/ts/member-delimiter-style": 0,
+      "@stylistic/ts/member-delimiter-style": [
+        1,
+        {
+          multiline: {
+            delimiter: "none",
+          },
+        },
+      ],
     },
   },
 
