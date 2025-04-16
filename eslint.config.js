@@ -130,7 +130,7 @@ export default [
           prev: ["const", "let", "var"],
         },
       ],
-      "@stylistic/ts/member-delimiter-style": 1,
+      "@stylistic/ts/member-delimiter-style": 0,
     },
   },
 
@@ -589,7 +589,7 @@ export default [
     rules: {
       "svelte/no-unused-class-name": 0,
       "svelte/block-lang": [1, { script: "ts" }],
-      "functional/no-let": 0
+      "functional/no-let": 0,
     },
   },
 ]
