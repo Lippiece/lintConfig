@@ -488,7 +488,7 @@ export default [
       parserOptions: {
         extraFileExtensions: [".astro"],
         parser: "@typescript-eslint/parser",
-        projectService: true,
+        project: true,
       },
 
       sourceType: "script",
