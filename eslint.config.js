@@ -10,7 +10,6 @@ import {
   sortTsconfig,
   toml,
   typescript,
-  vue,
   yaml,
 } from "@antfu/eslint-config"
 import { fixupPluginRules } from "@eslint/compat"
@@ -61,7 +60,7 @@ const antfu = await combine(
   sortPackageJson(),
   sortTsconfig(),
   toml(),
-  vue(),
+  // vue(),
   yaml(),
 )
 
@@ -562,6 +561,17 @@ export default [
       "vue/v-for-delimiter-style": 1,
       "vue/v-if-else-key": 1,
       "vue/v-on-handler-style": 1,
+      "vue/prefer-template": 1,
+      "vue/prefer-separate-static-class": 1,
+      "vue/padding-line-between-blocks": 1,
+      "vue/object-shorthand": 1,
+      "vue/no-useless-v-bind": 1,
+      "vue/no-unused-refs": 1,
+      "vue/no-setup-props-reactivity-loss": 1,
+      "vue/html-comment-content-spacing": 1,
+      "vue/eqeqeq": 1,
+      "vue/dot-notation": 1,
+      "vue/define-macros-order": 1,
     },
   },
 
