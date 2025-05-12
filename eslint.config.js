@@ -539,6 +539,7 @@ export default [
       "readable-tailwind/multiline": 0,
       "sonarjs/pluginRules-of-hooks": 0,
       "sonarjs/sonar-no-fallthrough": 0,
+      "vue/static-class-names-order": 0,
       "vue/html-comment-content-newline": 1,
       "vue/html-comment-indent": 1,
       "vue/define-emits-declaration": 1,
