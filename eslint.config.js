@@ -580,7 +580,6 @@ export default [
       "vue/require-typed-object-prop": 1,
       "vue/require-typed-ref": 1,
       "vue/slot-name-casing": 1,
-      "vue/static-class-names-order": 1,
       "vue/v-for-delimiter-style": 1,
       "vue/v-if-else-key": 1,
       "vue/v-on-handler-style": 1,
