@@ -562,7 +562,7 @@ export default [
       "vue/no-root-v-if": 1,
       "vue/no-static-inline-styles": 1,
       "vue/no-template-target-blank": 1,
-      "vue/no-undef-components": 1,
+      "vue/no-undef-components": 0,
       "vue/no-undef-properties": 1,
       "vue/no-unused-emit-declarations": 1,
       "vue/no-unused-properties": 1,
