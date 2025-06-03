@@ -536,7 +536,7 @@ export default [
     rules: {
       "functional/immutable-data": 0,
       "import/first": 0,
-      "readable-tailwind/multiline": 0,
+      "readable-tailwind/multiline": 1,
       "sonarjs/pluginRules-of-hooks": 0,
       "sonarjs/sonar-no-fallthrough": 0,
       "vue/static-class-names-order": 0,

@@ -21,7 +21,8 @@
         "noUnusedLabels": "off",
         "noUndeclaredVariables": "off",
         "noUnusedVariables": "off",
-        "useHookAtTopLevel": "off"
+        "useHookAtTopLevel": "off",
+        "useImportExtensions": "off"
       },
       "complexity": {
         "noForEach": "off"
