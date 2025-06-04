@@ -3,14 +3,19 @@
     "**/*.vue",
     "**/*.tsx",
     "**/*.js",
+    "*.js",
+    "*.ts",
     "**/*",
     "./*",
+    "*",
     "src/*",
     "eslint.config.js"
   ],
   "compilerOptions": {
     "composite": true,
     "strictNullChecks": true,
+    "allowJs": true,
+    "checkJs": true,
     "jsx": "react"
   }
 }
