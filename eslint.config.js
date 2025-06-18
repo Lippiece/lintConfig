@@ -152,8 +152,17 @@ export default [
   nodePlugin.configs["flat/recommended-script"],
   {
     rules: {
-      "n/no-missing-import"              : 0,
-      "n/no-sync"                        : 1,
+      "n/no-missing-import"                  : 0,
+      "n/no-sync"                            : 1,
+      "n/no-unsupported-features/es-builtins": [1, {
+        "version": ">=22.0.0",
+      }],
+      "n/no-unsupported-features/es-syntax": [1, {
+        "version": ">=22.0.0",
+      }],
+      "n/no-unsupported-features/node-builtins": [1, {
+        "version": ">=22.0.0",
+      }],
       "n/prefer-global/buffer"           : 1,
       "n/prefer-global/process"          : 1,
       "n/prefer-global/text-decoder"     : 1,
@@ -162,7 +171,7 @@ export default [
       "n/prefer-global/url-search-params": 1,
       "n/prefer-node-protocol"           : 1,
       "n/prefer-promises/dns"            : 1,
-      "n/prefer-promises/fs"             : 1,
+      "n/prefer-promises/fs"             : 1
     },
   },
 

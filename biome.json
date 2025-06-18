@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
   "css": {
     "formatter": {
       "enabled": true,
@@ -36,10 +36,8 @@
         "useNamingConvention": "off",
         "noNonNullAssertion": "warn",
         "useLiteralEnumMembers": "error",
-        "noCommaOperator": "error",
         "useNodejsImportProtocol": "error",
         "useAsConstAssertion": "error",
-        "useNumericLiterals": "error",
         "useEnumInitializers": "error",
         "useSelfClosingElements": "error",
         "useSingleVarDeclarator": "error",
@@ -50,7 +48,6 @@
         "useTemplate": "error",
         "noParameterAssign": "error",
         "useDefaultParameterLast": "error",
-        "noArguments": "error",
         "useImportType": "error",
         "useExportType": "error",
         "noUselessElse": "error",
@@ -66,7 +63,10 @@
       },
       "complexity": {
         "noForEach": "off",
-        "useLiteralKeys": "off"
+        "useLiteralKeys": "off",
+        "noCommaOperator": "error",
+        "useNumericLiterals": "error",
+        "noArguments": "error"
       },
       "suspicious": {
         "noReactSpecificProps": "off"
@@ -75,9 +75,7 @@
   },
   "overrides": [
     {
-      "include": [
-        "**/*.svelte"
-      ],
+      "includes": ["**/*.svelte"],
       "linter": {
         "rules": {
           "style": {
