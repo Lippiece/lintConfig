@@ -16,7 +16,7 @@ import { fixupPluginRules } from "@eslint/compat"
 import js from "@eslint/js"
 import html from "@html-eslint/eslint-plugin"
 import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
-import stylistic from "@stylistic/eslint-plugin-ts"
+import stylistic from "@stylistic/eslint-plugin"
 import astroParser from "astro-eslint-parser"
 import biome from "eslint-config-biome"
 import alignAssignments from "eslint-plugin-align-assignments"
@@ -113,13 +113,13 @@ export default [
 
   {
     plugins: {
-      "@stylistic/ts": stylistic,
+      "@stylistic": stylistic,
     },
 
     rules: {
-      "@stylistic/ts/key-spacing": [1, { align: {}, multiLine: {} }],
-
-      "@stylistic/ts/member-delimiter-style": [
+      "@stylistic/indent"                : 0,
+      "@stylistic/key-spacing"           : [1, { align: {}, multiLine: {} }],
+      "@stylistic/member-delimiter-style": [
         1,
         {
           multiline: {
@@ -127,7 +127,7 @@ export default [
           },
         },
       ],
-      "@stylistic/ts/padding-line-between-statements": [
+      "@stylistic/padding-line-between-statements": [
         1,
         { blankLine: "always", next: "return", prev: "*" },
         { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
@@ -137,6 +137,7 @@ export default [
           prev     : ["const", "let", "var"],
         },
       ],
+      "@stylistic/quotes": 0,
     },
   },
 
@@ -286,7 +287,7 @@ export default [
     },
 
     plugins: {
-      "@stylistic/ts"         : stylistic,
+      "@stylistic"            : stylistic,
       "align-assignments"     : alignAssignments,
       "better-tailwindcss"    : betterTailwindCss,
       "only-warn"             : onlyWarn,
