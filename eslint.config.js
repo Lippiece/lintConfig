@@ -614,7 +614,7 @@ export default [
       "vue/v-for-delimiter-style": 1,
       "vue/v-if-else-key": 1,
       "vue/v-on-handler-style": [1, 
-        ["method", "inline"], // ["method", "inline-function"] | ["method", "inline"] | "inline-function" | "inline" 
+        "inline", // ["method", "inline-function"] | ["method", "inline"] | "inline-function" | "inline" 
       ],
       "parse": 0
     },
