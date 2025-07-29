@@ -22,7 +22,7 @@ import biome from "eslint-config-biome"
 import alignAssignments from "eslint-plugin-align-assignments"
 import arrayFunc from "eslint-plugin-array-func"
 import eslintPluginAstro from "eslint-plugin-astro"
-import betterTailwindCss from "eslint-plugin-better-tailwindcss"
+// import betterTailwindCss from "eslint-plugin-better-tailwindcss"
 import boundaries from "eslint-plugin-boundaries"
 import canonical from "eslint-plugin-canonical"
 import compat from "eslint-plugin-compat"
@@ -298,7 +298,7 @@ export default [
     plugins: {
       "@stylistic": stylistic,
       "align-assignments": alignAssignments,
-      "better-tailwindcss": betterTailwindCss,
+      // "better-tailwindcss": betterTailwindCss,
       "only-warn": onlyWarn,
       "prefer-arrow-functions": fixupPluginRules(preferArrow),
       "sort-keys-fix": fixupPluginRules(sortKeysFix),
@@ -325,7 +325,7 @@ export default [
 
       "vue/valid-v-for": 0,
 
-      ...betterTailwindCss.configs["recommended-warn"].rules,
+      // ...betterTailwindCss.configs["recommended-warn"].rules,
       "@microsoft/sdl/no-html-method": 0,
 
       "@typescript-eslint/adjacent-overload-signatures": 1,
@@ -408,7 +408,7 @@ export default [
 
       "antfu/import-dedupe": 1,
       "antfu/no-top-level-await": 0,
-      "better-tailwindcss/no-unregistered-classes": 0,
+      // "better-tailwindcss/no-unregistered-classes": 0,
       camelcase: 0,
       "capitalized-comments": 0,
       "comma-dangle": 0,
@@ -555,7 +555,7 @@ export default [
     },
 
     rules: {
-      "better-tailwindcss/multiline": 1,
+      // "better-tailwindcss/multiline": 1,
       "functional/immutable-data": 0,
       "import/first": 0,
       "sonarjs/pluginRules-of-hooks": 0,
