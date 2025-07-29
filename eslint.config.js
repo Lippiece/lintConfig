@@ -472,6 +472,7 @@ export default [
       "write-good-comments/write-good-comments": 1,
 
       "xss/no-mixed-html": 0,
+      "vue/v-on-handler-style": 0,
     },
   },
 
@@ -613,6 +614,7 @@ export default [
       "vue/static-class-names-order": 0,
       "vue/v-for-delimiter-style": 1,
       "vue/v-if-else-key": 1,
+      "vue/v-on-handler-style": 0,
       "parse": 0
     },
   },
