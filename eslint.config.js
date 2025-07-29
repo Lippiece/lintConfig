@@ -629,7 +629,7 @@ export default [
     },
   },
   {
-    files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
+    files: ["**/*.svelte"],
     // See more details at: https://typescript-eslint.io/packages/parser/
     languageOptions: {
       parserOptions: {
@@ -651,6 +651,7 @@ export default [
       "functional/no-let": 0,
       "svelte/block-lang": [1, { script: "ts" }],
       "svelte/no-unused-class-name": 0,
+      "svelte/no-trailing-spaces": 0,
     },
   },
 ]
