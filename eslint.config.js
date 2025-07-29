@@ -613,9 +613,6 @@ export default [
       "vue/static-class-names-order": 0,
       "vue/v-for-delimiter-style": 1,
       "vue/v-if-else-key": 1,
-      "vue/v-on-handler-style": [1, 
-        "inline", // ["method", "inline-function"] | ["method", "inline"] | "inline-function" | "inline" 
-      ],
       "parse": 0
     },
   },
