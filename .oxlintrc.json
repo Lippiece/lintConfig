@@ -3,8 +3,10 @@
     "unicorn",
     "typescript",
     "oxc",
-    "oxc-security",
-    "eslint-plugin-promise"
+    "promise",
+    "jsdoc",
+    "node",
+    "import"
   ],
   "categories": {
     "correctness": "warn",
@@ -43,10 +45,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "*.astro",
-        "*.svelte"
-      ],
+      "files": ["*.astro", "*.svelte"],
       "rules": {
         "no-unused-vars": "off"
       }
