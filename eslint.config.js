@@ -286,8 +286,10 @@ export default [
           modules       : true,
         },
 
-        extraFileExtensions: "vue",
-        projectService     : true,
+        extraFileExtensions: [".vue", ".json"],
+        projectService     : {
+          allowDefaultProject: ['*.json'],
+        },
       },
 
       sourceType: "module",
