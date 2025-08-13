@@ -575,8 +575,12 @@ export default [
       "vue/no-duplicate-attr-inheritance"        : 1,
       "vue/no-implicit-coercion"                 : 1,
       "vue/no-import-compiler-macros"            : 1,
+      "vuejs-accessibility/label-has-for"        : [1, {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }],
       "vue/no-multiple-objects-in-class"         : 1,
-      "vue/no-multiple-template-root"            : 1,
       "vue/no-ref-object-reactivity-loss"        : 1,
       "vue/no-root-v-if"                         : 1,
       "vue/no-setup-props-reactivity-loss"       : 1,
