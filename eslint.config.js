@@ -111,36 +111,6 @@ export default [
 
   {
     plugins: {
-      "@stylistic": stylistic,
-    },
-
-    rules: {
-      "@stylistic/indent"                : 0,
-      "@stylistic/key-spacing"           : [1, { align: {}, multiLine: {} }],
-      "@stylistic/member-delimiter-style": [
-        1,
-        {
-          multiline: {
-            delimiter: "none",
-          },
-        },
-      ],
-      "@stylistic/padding-line-between-statements": [
-        1,
-        { blankLine: "always", next: "return", prev: "*" },
-        { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
-        {
-          blankLine: "any",
-          next     : ["const", "let", "var"],
-          prev     : ["const", "let", "var"],
-        },
-      ],
-      "@stylistic/quotes": 0,
-    },
-  },
-
-  {
-    plugins: {
       "tree-shaking": fixupPluginRules(treeShaking),
     },
     rules: {
@@ -422,7 +392,27 @@ export default [
       "jsdoc/tag-lines"    : 1,
       "jsdoc/text-escaping": 1,
       "jsonc/auto"         : 1,
-      "key-spacing"        : 0,
+      "@stylistic/indent"             : 0,
+      "@stylistic/key-spacing"           : [1, { align: {}, multiLine: {} }],
+      "@stylistic/member-delimiter-style": [
+        1,
+        {
+          multiline: {
+            delimiter: "none",
+          },
+        },
+      ],
+      "@stylistic/padding-line-between-statements": [
+        1,
+        { blankLine: "always", next: "return", prev: "*" },
+        { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
+        {
+          blankLine: "any",
+          next     : ["const", "let", "var"],
+          prev     : ["const", "let", "var"],
+        },
+      ],
+      "@stylistic/quotes": 0,
       "linebreak-style"    : 0,
       "max-lines"          : 0,
       "max-statements"     : [0, { max: 15 }],
