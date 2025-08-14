@@ -1,20 +1,21 @@
 {
   "plugins": [
-    "unicorn",
     "typescript",
+    "unicorn",
     "oxc",
-    "promise",
+    "import",
     "jsdoc",
     "node",
-    "import"
+    "promise"
   ],
   "categories": {
     "correctness": "warn",
-    "nursery": "warn",
+    "suspicious": "warn",
     "pedantic": "warn",
-    "restriction": "warn",
+    "perf": "warn",
     "style": "warn",
-    "suspicious": "warn"
+    "restriction": "warn",
+    "nursery": "warn"
   },
   "rules": {
     "no-async-await": 0,
@@ -41,6 +42,8 @@
     "no-optional-chaining": 0,
     "no-ternary": 0,
     "sort-imports": 0,
+    "unicorn/prefer-includes": 0,
+    "unicorn/no-array-for-each": 0,
     "filename-case": 0
   },
   "overrides": [

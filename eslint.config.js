@@ -80,6 +80,7 @@ export default [
     rules: {
       "unicorn/expiring-todo-comments": 0,
       "unicorn/filename-case"         : 0,
+      "unicorn/prefer-includes"       : 1,
       "unicorn/prevent-abbreviations" : [
         1,
         {
@@ -191,10 +192,6 @@ export default [
 
   pluginPromise.configs["flat/recommended"],
 
-  // NOTE: Remove redundant rules
-  biome,
-  ...oxlint.configs["flat/all"],
-
   // NOTE: SDL (security and performance)
   ...pluginMicrosoftSdl.configs.typescript,
   ...pluginMicrosoftSdl.configs.common,
@@ -237,6 +234,11 @@ export default [
     },
     rules: { ...boundaries.configs.recommended.rules },
   },
+
+  // NOTE: Remove redundant rules
+  biome,
+  ...oxlint.buildFromOxlintConfigFile('/home/lippiece/.config/lintConfig/.oxlintrc.json'),
+
 
   // NOTE: Main config
   {
