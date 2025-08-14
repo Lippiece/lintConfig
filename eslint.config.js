@@ -357,7 +357,6 @@ export default [
       "@typescript-eslint/return-await"                                : 1,
       "@typescript-eslint/strict-boolean-expressions"                  : 0,
       "@typescript-eslint/switch-exhaustiveness-check"                 : 1,
-      "@typescript-eslint/typedef"                                     : 1,
       "align-assignments/align-assignments"                            : 1,
       "antfu/import-dedupe"                                            : 1,
       "antfu/no-top-level-await"                                       : 0,
