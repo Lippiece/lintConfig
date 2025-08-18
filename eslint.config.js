@@ -644,4 +644,9 @@ export default [
       "svelte/no-unused-class-name": 0,
     },
   },
+
+  {
+    files: ['**/*.json'],
+    ...tseslint.configs.disableTypeChecked
+  }
 ]
