@@ -386,26 +386,27 @@ export default [
       // "better-tailwindcss/no-unregistered-classes": 0,
       camelcase                                                        : 0,
 
-      "capitalized-comments"                       : 0,
-      "comma-dangle"                               : 0,
-      "compat/compat"                              : 0,
-      "drizzle/enforce-delete-with-where"          : 0,
-      "etc/no-misused-generics"                    : 0,
-      "func-style"                                 : [1, "expression"],
-      "import/no-unused-modules"                   : "off",
-      "import/unambiguous"                         : 0,
-      indent                                       : 0,
-      "jest/prefer-expect-assertions"              : 0,
-      "jest/require-hook"                          : 0,
-      "jsdoc/check-line-alignment"                 : 1,
-      "jsdoc/match-name"                           : 1,
-      "jsdoc/no-bad-blocks"                        : 1,
-      "jsdoc/no-blank-block-descriptions"          : 1,
-      "jsdoc/no-blank-blocks"                      : 1,
-      "jsdoc/no-types"                             : 1,
-      "jsdoc/require-description"                  : 1,
-      "jsdoc/require-description-complete-sentence": 1,
+      "capitalized-comments"             : 0,
+      "comma-dangle"                     : 0,
+      "compat/compat"                    : 0,
+      "drizzle/enforce-delete-with-where": 0,
+      "etc/no-misused-generics"          : 0,
+      "exports-last"                     : 0,
+      "func-style"                       : [1, "expression"],
+      "import/no-unused-modules"         : "off",
+      "import/unambiguous"               : 0,
+      indent                             : 0,
+      "jest/prefer-expect-assertions"    : 0,
+      "jest/require-hook"                : 0,
+      "jsdoc/check-line-alignment"       : 1,
+      "jsdoc/match-name"                 : 1,
+      "jsdoc/no-bad-blocks"              : 1,
+      "jsdoc/no-blank-block-descriptions": 1,
+      "jsdoc/no-blank-blocks"            : 1,
+      "jsdoc/no-types"                   : 1,
+      "jsdoc/require-description"        : 1,
 
+      "jsdoc/require-description-complete-sentence"  : 1,
       "jsdoc/require-example"                        : 1,
       "jsdoc/require-hyphen-before-param-description": 1,
       "jsdoc/require-jsdoc"                          : 1,
@@ -421,19 +422,20 @@ export default [
       "no-multi-spaces"                              : 0,
       "no-ternary"                                   : 0,
       "no-undef"                                     : 0,
-      "no-underscore-dangle"                         : [
+
+      "no-underscore-dangle": [
         1,
         {
           allowFunctionParams: true,
         },
       ],
-
       "no-unused-vars"       : 0,
       "no-useless-assignment": 0,
       "no-warning-comments"  : 0,
-      "one-var"              : 0,
 
-      parse                                          : 0,
+      "one-var": 0,
+      parse    : 0,
+
       "prefer-arrow-functions/prefer-arrow-functions": [
         1,
         {
@@ -444,7 +446,6 @@ export default [
           singleReturnOnly      : false,
         },
       ],
-
       "prettier/prettier"                  : 0,
       "promise/always-return"              : 0,
       "promise/no-multiple-resolved"       : 0,
@@ -459,12 +460,12 @@ export default [
       "typescript-eslint/naming-convention": 0,
       "unused-imports/no-unused-imports"   : 0,
       "unused-imports/no-unused-vars"      : 0,
-      "vue/v-on-handler-style"             : 0,
 
-      "vue/valid-v-for": 0,
+      "vue/v-on-handler-style": 0,
 
+      "vue/valid-v-for"                        : 0,
       "write-good-comments/write-good-comments": 1,
-      "xss/no-mixed-html"                      : 0,
+      "xss/no-mixed-html"                      : 0
     },
   },
 
