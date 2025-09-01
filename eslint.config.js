@@ -571,7 +571,6 @@ export default [
       "vue/no-multiple-objects-in-class"         : 1,
       "vue/no-ref-object-reactivity-loss"        : 1,
       "vue/no-root-v-if"                         : 1,
-      "vue/no-setup-props-reactivity-loss"       : 1,
       "vue/no-static-inline-styles"              : 1,
       "vue/no-template-target-blank"             : 1,
       "vue/no-undef-components"                  : 0,
