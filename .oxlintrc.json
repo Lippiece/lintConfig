@@ -26,6 +26,7 @@
     "promise"
   ],
   "rules": {
+    "array-type"                   : 0,
     "explicit-function-return-type": 0,
     "exports-last"                 : 0,
     "filename-case"                : 0,
