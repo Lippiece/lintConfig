@@ -13,6 +13,7 @@ import {
   typescript,
   yaml,
 } from "@antfu/eslint-config"
+import unocss from '@unocss/eslint-config/flat'
 import { fixupPluginRules } from "@eslint/compat"
 import js from "@eslint/js"
 import html from "@html-eslint/eslint-plugin"
@@ -229,6 +230,8 @@ export default [
   //   },
   // },
 
+  // NOTE: Unocss
+  unocss,
   // NOTE: MVC architecture
   {
     plugins: {
