@@ -13,12 +13,12 @@ import {
   typescript,
   yaml,
 } from "@antfu/eslint-config"
-import unocss from '@unocss/eslint-config/flat'
 import { fixupPluginRules } from "@eslint/compat"
 import js from "@eslint/js"
 import html from "@html-eslint/eslint-plugin"
 import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin"
+import unocss from "@unocss/eslint-config/flat"
 import biome from "eslint-config-biome"
 import alignAssignments from "eslint-plugin-align-assignments"
 import arrayFunc from "eslint-plugin-array-func"
@@ -306,18 +306,14 @@ export default [
           prev     : ["const", "let", "var"],
         },
       ],
-
-      "@stylistic/quotes": 0,
-
+      "@stylistic/quotes"                              : 0,
       "@typescript-eslint/adjacent-overload-signatures": 1,
-
-      "@typescript-eslint/array-type": [
+      "@typescript-eslint/array-type"                  : [
         1,
         {
           default: "array-simple",
         },
       ],
-
       "@typescript-eslint/await-thenable"                 : 1,
       "@typescript-eslint/consistent-generic-constructors": 1,
       "@typescript-eslint/consistent-indexed-object-style": 1,
@@ -391,57 +387,52 @@ export default [
       "antfu/no-top-level-await"                                       : 0,
       // "better-tailwindcss/no-unregistered-classes": 0,
       camelcase                                                        : 0,
-
-      "capitalized-comments"             : 0,
-      "comma-dangle"                     : 0,
-      "compat/compat"                    : 0,
-      "drizzle/enforce-delete-with-where": 0,
-      "etc/no-misused-generics"          : 0,
-      "exports-last"                     : 0,
-      "func-style"                       : [1, "expression"],
-      "import/no-unused-modules"         : "off",
-      "import/unambiguous"               : 0,
-      indent                             : 0,
-      "jest/prefer-expect-assertions"    : 0,
-      "jest/require-hook"                : 0,
-      "jsdoc/check-line-alignment"       : 1,
-      "jsdoc/match-name"                 : 1,
-      "jsdoc/no-bad-blocks"              : 1,
-      "jsdoc/no-blank-block-descriptions": 1,
-      "jsdoc/no-blank-blocks"            : 1,
-      "jsdoc/no-types"                   : 1,
-      "jsdoc/require-description"        : 1,
-
-      "jsdoc/require-description-complete-sentence"  : 1,
-      "jsdoc/require-example"                        : 1,
-      "jsdoc/require-hyphen-before-param-description": 1,
-      "jsdoc/require-jsdoc"                          : 1,
-      "jsdoc/require-template"                       : 1,
-      "jsdoc/sort-tags"                              : 1,
-      "jsdoc/tag-lines"                              : 1,
-      "jsdoc/text-escaping"                          : 1,
-      "jsonc/auto"                                   : 1,
-      "linebreak-style"                              : 0,
-      "max-lines"                                    : 0,
-      "max-statements"                               : [0, { max: 15 }],
-      "no-inline-comments"                           : 0,
-      "no-multi-spaces"                              : 0,
-      "no-ternary"                                   : 0,
-      "no-undef"                                     : 0,
-
-      "no-underscore-dangle": [
+      "capitalized-comments"                                           : 0,
+      "comma-dangle"                                                   : 0,
+      "compat/compat"                                                  : 0,
+      "drizzle/enforce-delete-with-where"                              : 0,
+      "etc/no-misused-generics"                                        : 0,
+      "exports-last"                                                   : 0,
+      "func-style"                                                     : [1, "expression"],
+      "import/no-unused-modules"                                       : "off",
+      "import/unambiguous"                                             : 0,
+      indent                                                           : 0,
+      "jest/prefer-expect-assertions"                                  : 0,
+      "jest/require-hook"                                              : 0,
+      "jsdoc/check-line-alignment"                                     : 1,
+      "jsdoc/match-name"                                               : 1,
+      "jsdoc/no-bad-blocks"                                            : 1,
+      "jsdoc/no-blank-block-descriptions"                              : 1,
+      "jsdoc/no-blank-blocks"                                          : 1,
+      "jsdoc/no-types"                                                 : 1,
+      "jsdoc/require-description"                                      : 1,
+      "jsdoc/require-description-complete-sentence"                    : 1,
+      "jsdoc/require-example"                                          : 1,
+      "jsdoc/require-hyphen-before-param-description"                  : 1,
+      "jsdoc/require-jsdoc"                                            : 1,
+      "jsdoc/require-template"                                         : 1,
+      "jsdoc/sort-tags"                                                : 1,
+      "jsdoc/tag-lines"                                                : 1,
+      "jsdoc/text-escaping"                                            : 1,
+      "jsonc/auto"                                                     : 1,
+      "linebreak-style"                                                : 0,
+      "max-lines"                                                      : 0,
+      "max-statements"                                                 : [0, { max: 15 }],
+      "no-inline-comments"                                             : 0,
+      "no-multi-spaces"                                                : 0,
+      "no-ternary"                                                     : 0,
+      "no-undef"                                                       : 0,
+      "no-underscore-dangle"                                           : [
         1,
         {
           allowFunctionParams: true,
         },
       ],
-      "no-unused-vars"       : 0,
-      "no-useless-assignment": 0,
-      "no-warning-comments"  : 0,
-
-      "one-var": 0,
-      parse    : 0,
-
+      "no-unused-vars"                               : 0,
+      "no-useless-assignment"                        : 0,
+      "no-warning-comments"                          : 0,
+      "one-var"                                      : 0,
+      parse                                          : 0,
       "prefer-arrow-functions/prefer-arrow-functions": [
         1,
         {
@@ -452,23 +443,21 @@ export default [
           singleReturnOnly      : false,
         },
       ],
-      "prettier/prettier"                  : 0,
-      "promise/always-return"              : 0,
-      "promise/no-multiple-resolved"       : 0,
-      "promise/no-return-in-finally"       : 0,
-      "putout/putout"                      : 0,
-      quotes                               : 0,
-      semi                                 : 0,
-      "sort-keys"                          : 0,
-      "sort-keys-fix/sort-keys-fix"        : 1,
-      "style/quotes"                       : 0,
-      "total-functions/require-strict-mode": 0,
-      "typescript-eslint/naming-convention": 0,
-      "unused-imports/no-unused-imports"   : 0,
-      "unused-imports/no-unused-vars"      : 0,
-
-      "vue/v-on-handler-style": 0,
-
+      "prettier/prettier"                      : 0,
+      "promise/always-return"                  : 0,
+      "promise/no-multiple-resolved"           : 0,
+      "promise/no-return-in-finally"           : 0,
+      "putout/putout"                          : 0,
+      quotes                                   : 0,
+      semi                                     : 0,
+      "sort-keys"                              : 0,
+      "sort-keys-fix/sort-keys-fix"            : 1,
+      "style/quotes"                           : 0,
+      "total-functions/require-strict-mode"    : 0,
+      "typescript-eslint/naming-convention"    : 0,
+      "unused-imports/no-unused-imports"       : 0,
+      "unused-imports/no-unused-vars"          : 0,
+      "vue/v-on-handler-style"                 : 0,
       "vue/valid-v-for"                        : 0,
       "write-good-comments/write-good-comments": 1,
       "xss/no-mixed-html"                      : 0,
@@ -519,6 +508,7 @@ export default [
     },
   },
 
+  // NOTE: Astro
   ...eslintPluginAstro.configs.all,
   {
     // Don't attempt to use typescript rules in astro files
@@ -530,16 +520,19 @@ export default [
     ...tseslint.configs.disableTypeChecked,
   },
   {
-    files: ["**/*.astro/*.ts"],
+    files          : ["**/*.astro/*.ts"],
     languageOptions: {
       parserOptions: {
         project: null,
       },
     },
-  ...tseslint.configs.disableTypeChecked,
+    rules: {
+      "astro/semi": 0,
+    },
+    ...tseslint.configs.disableTypeChecked,
   },
 
-  // Vue
+  // NOTE: Vue
   ...pluginVue.configs["flat/essential"],
   ...pluginVue.configs["flat/recommended"],
   ...pluginVue.configs["flat/strongly-recommended"],
@@ -627,7 +620,7 @@ export default [
     },
   },
 
-  // Svelte
+  // NOTE: Svelte
   ...svelte.configs.all,
   {
     languageOptions: {
@@ -664,6 +657,7 @@ export default [
     },
   },
 
+  // NOTE: JSON
   {
     files: ["**/*.json"],
     ...tseslint.configs.disableTypeChecked,
