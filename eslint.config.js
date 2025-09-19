@@ -1,4 +1,5 @@
 import {
+  astro,
   combine,
   ignores,
   javascript,
@@ -61,6 +62,7 @@ const antfu = await combine(
   toml(),
   // vue(),
   yaml(),
+  astro(),
 )
 
 export default [
@@ -237,8 +239,9 @@ export default [
 
   // NOTE: Remove redundant rules
   biome,
-  ...oxlint.buildFromOxlintConfigFile('/home/lippiece/.config/lintConfig/.oxlintrc.json'),
-
+  ...oxlint.buildFromOxlintConfigFile(
+    "/home/lippiece/.config/lintConfig/.oxlintrc.json",
+  ),
 
   // NOTE: Main config
   {
@@ -260,7 +263,7 @@ export default [
 
         extraFileExtensions: [".vue", ".json"],
         projectService     : {
-          allowDefaultProject: ['*.json'],
+          allowDefaultProject: ["*.json"],
         },
       },
 
@@ -465,7 +468,7 @@ export default [
 
       "vue/valid-v-for"                        : 0,
       "write-good-comments/write-good-comments": 1,
-      "xss/no-mixed-html"                      : 0
+      "xss/no-mixed-html"                      : 0,
     },
   },
 
@@ -518,11 +521,20 @@ export default [
     // Don't attempt to use typescript rules in astro files
     // <https://github.com/ota-meshi/eslint-plugin-astro/issues/447> 😔
     files: ["**/*.astro"],
-    ...tseslint.configs.disableTypeChecked,
     rules: {
-      'astro/semi': 0
-    }
+      "astro/semi": 0,
+    },
+    ...tseslint.configs.disableTypeChecked,
   },
+  // {
+  //   files: ["**/*.astro/*.ts"],
+  //   languageOptions: {
+  //     parserOptions: {
+  //       project: null,
+  //     },
+  //   },
+  // ...tseslint.configs.disableTypeChecked,
+  // },
 
   // Vue
   ...pluginVue.configs["flat/essential"],
@@ -545,7 +557,7 @@ export default [
       // "better-tailwindcss/multiline": 1,
       "functional/immutable-data"                : 0,
       "import/first"                             : 0,
-      "parse"                                    : 0,
+      parse                                      : 0,
       "sonarjs/pluginRules-of-hooks"             : 0,
       "sonarjs/sonar-no-fallthrough"             : 0,
       "vue/component-api-style"                  : 1,
@@ -601,11 +613,14 @@ export default [
       "vue/v-for-delimiter-style"                : 1,
       "vue/v-if-else-key"                        : 1,
       "vue/v-on-handler-style"                   : 0,
-      "vuejs-accessibility/label-has-for"        : [1, {
-        "required": {
-          "some": ["nesting", "id"]
-        }
-      }]
+      "vuejs-accessibility/label-has-for"        : [
+        1,
+        {
+          required: {
+            some: ["nesting", "id"],
+          },
+        },
+      ],
     },
   },
 
@@ -647,7 +662,7 @@ export default [
   },
 
   {
-    files: ['**/*.json'],
-    ...tseslint.configs.disableTypeChecked
-  }
+    files: ["**/*.json"],
+    ...tseslint.configs.disableTypeChecked,
+  },
 ]
