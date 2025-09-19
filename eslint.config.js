@@ -529,15 +529,15 @@ export default [
     },
     ...tseslint.configs.disableTypeChecked,
   },
-  // {
-  //   files: ["**/*.astro/*.ts"],
-  //   languageOptions: {
-  //     parserOptions: {
-  //       project: null,
-  //     },
-  //   },
-  // ...tseslint.configs.disableTypeChecked,
-  // },
+  {
+    files: ["**/*.astro/*.ts"],
+    languageOptions: {
+      parserOptions: {
+        project: null,
+      },
+    },
+  ...tseslint.configs.disableTypeChecked,
+  },
 
   // Vue
   ...pluginVue.configs["flat/essential"],
