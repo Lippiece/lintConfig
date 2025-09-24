@@ -63,7 +63,11 @@ const antfu = await combine(
   toml(),
   // vue(),
   yaml(),
-  astro(),
+  astro({
+    overrides: {
+      "astro/semi": [0, "never"],
+    },
+  }),
 )
 
 export default [
@@ -385,6 +389,7 @@ export default [
       "align-assignments/align-assignments"                            : 1,
       "antfu/import-dedupe"                                            : 1,
       "antfu/no-top-level-await"                                       : 0,
+      "astro/semi"                                                     : [0, "never"],
       // "better-tailwindcss/no-unregistered-classes": 0,
       camelcase                                                        : 0,
       "capitalized-comments"                                           : 0,
@@ -527,7 +532,7 @@ export default [
       },
     },
     rules: {
-      "astro/semi": 0,
+      "astro/semi": [0, "never"],
     },
     ...tseslint.configs.disableTypeChecked,
   },
