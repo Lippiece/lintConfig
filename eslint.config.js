@@ -48,6 +48,8 @@ import { configs as wc } from "eslint-plugin-wc"
 import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
 import tseslint from "typescript-eslint"
+import fs from "node:fs";
+import path from "node:path";
 
 const antfu = await combine(
   // comments(),
@@ -69,6 +71,8 @@ const antfu = await combine(
     },
   }),
 )
+
+const hasUno = fs.existsSync(path.resolve(process.cwd(), "uno.config.ts"))
 
 export default [
   // NOTE: Opinionated
@@ -235,7 +239,7 @@ export default [
   // },
 
   // NOTE: Unocss
-  unocss,
+  ...(hasUno ? [unocss] : []),
   // NOTE: MVC architecture
   {
     plugins: {
