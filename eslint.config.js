@@ -47,9 +47,9 @@ import pluginVueA11y from "eslint-plugin-vuejs-accessibility"
 import { configs as wc } from "eslint-plugin-wc"
 import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
+import fs from "node:fs"
+import path from "node:path"
 import tseslint from "typescript-eslint"
-import fs from "node:fs";
-import path from "node:path";
 
 const antfu = await combine(
   // comments(),
@@ -459,6 +459,7 @@ export default [
       "putout/putout"                          : 0,
       quotes                                   : 0,
       semi                                     : 0,
+      "sort-imports"                           : 0,
       "sort-keys"                              : 0,
       "sort-keys-fix/sort-keys-fix"            : 1,
       "style/quotes"                           : 0,
