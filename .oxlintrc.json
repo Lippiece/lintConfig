@@ -8,6 +8,7 @@
     "style"      : "warn",
     "suspicious" : "warn"
   },
+  "jsPlugins": ["eslint-plugin-security"],
   "overrides": [
     {
       "files": ["*.astro", "*.svelte"],
