@@ -1,63 +1,85 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
-  "formatter": {
-    "enabled": true,
-    "formatWithErrors": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "lf",
-    "lineWidth": 80,
-    "attributePosition": "auto"
-  },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "correctness": {
-        "noUnusedImports": "off",
-        "noUnusedLabels": "off",
-        "noUndeclaredVariables": "off",
-        "noUnusedVariables": "off",
-        "useHookAtTopLevel": "off",
-        "useImportExtensions": "off"
-      },
-      "complexity": {
-        "noForEach": "off"
-      },
-      "nursery": {},
-      "style": {
-        "noNonNullAssertion": "warn",
-        "useNamingConvention": "off",
-        "noParameterAssign": "error",
-        "useAsConstAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error"
-      }
+  "css"    : {
+    "formatter": {
+      "enabled"    : true,
+      "indentStyle": "space"
     }
+  },
+  "formatter": {
+    "formatWithErrors": true,
+    "indentStyle"     : "space"
   },
   "javascript": {
     "formatter": {
-      "jsxQuoteStyle": "single",
+      "enabled"        : true,
+      "indentStyle"    : "space",
       "quoteProperties": "asNeeded",
-      "trailingCommas": "none",
-      "semicolons": "asNeeded",
-      "arrowParentheses": "always",
-      "bracketSpacing": true,
-      "bracketSameLine": false,
-      "enabled": true,
-      "quoteStyle": "single",
-      "attributePosition": "auto"
+      "quoteStyle"     : "single",
+      "trailingCommas" : "all"
     }
   },
   "json": {
     "formatter": {
-      "enabled": true
+      "enabled"    : true,
+      "indentStyle": "space",
+      "indentWidth": 2
     }
-  }
+  },
+  "linter": {
+    "enabled": true,
+    "rules"  : {
+      "complexity": {
+        "noArguments"       : "error",
+        "noCommaOperator"   : "error",
+        "noForEach"         : "off",
+        "useLiteralKeys"    : "off",
+        "useNumericLiterals": "error"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "off",
+        "noUnusedImports"      : "off",
+        "noUnusedLabels"       : "off",
+        "noUnusedVariables"    : "off",
+        "useHookAtTopLevel"    : "off",
+        "useImportExtensions"  : "off"
+      },
+      "style": {
+        "noInferrableTypes"        : "error",
+        "noNonNullAssertion"       : "warn",
+        "noParameterAssign"        : "error",
+        "noUnusedTemplateLiteral"  : "error",
+        "noUselessElse"            : "error",
+        "useAsConstAssertion"      : "error",
+        "useDefaultParameterLast"  : "error",
+        "useEnumInitializers"      : "error",
+        "useExponentiationOperator": "error",
+        "useExportType"            : "error",
+        "useImportType"            : "error",
+        "useLiteralEnumMembers"    : "error",
+        "useNamingConvention"      : "off",
+        "useNodejsImportProtocol"  : "error",
+        "useNumberNamespace"       : "error",
+        "useSelfClosingElements"   : "error",
+        "useShorthandFunctionType" : "error",
+        "useSingleVarDeclarator"   : "error",
+        "useTemplate"              : "error"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.svelte"],
+      "linter"  : {
+        "rules": {
+          "style": {
+            "useConst": "off"
+          }
+        }
+      }
+    }
+  ]
 }
