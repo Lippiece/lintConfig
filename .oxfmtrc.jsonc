@@ -1,0 +1,8 @@
+{
+  "semi": false,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "arrowParens": "avoid",
+  "bracketSameLine": false,
+  "htmlWhitespaceSensitivity": "ignore"
+}

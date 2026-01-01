@@ -16,7 +16,8 @@
       "indentStyle"    : "space",
       "quoteProperties": "asNeeded",
       "quoteStyle"     : "single",
-      "trailingCommas" : "all"
+      "semicolons"     : "asNeeded",
+      "trailingCommas" : "none"
     }
   },
   "json": {
