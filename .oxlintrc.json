@@ -27,6 +27,7 @@
   ],
   "rules": {
     "array-type"                          : 0,
+    "capitalized-comments"                : 0,
     "eslint-plugin-import/no-named-export": 0,
     "explicit-function-return-type"       : 0,
     "exports-last"                        : 0,
