@@ -299,7 +299,6 @@ biome, ...oxlint.buildFromOxlintConfigFile(
     "@typescript-eslint/no-confusing-void-expression"                : 1,
     "@typescript-eslint/no-deprecated"                               : 1,
     "@typescript-eslint/no-duplicate-type-constituents"              : 1,
-    "@typescript-eslint/no-floating-promises"                        : 1,
     "@typescript-eslint/no-inferrable-types"                         : 1,
     "@typescript-eslint/no-magic-numbers"                            : 0,
     "@typescript-eslint/no-meaningless-void-operator"                : 1,
