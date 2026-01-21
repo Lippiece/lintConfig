@@ -1,12 +1,13 @@
 {
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
   "categories": {
     "correctness": "warn",
-    "nursery"    : "warn",
-    "pedantic"   : "warn",
-    "perf"       : "warn",
+    "nursery": "warn",
+    "pedantic": "warn",
+    "perf": "warn",
     "restriction": "warn",
-    "style"      : "warn",
-    "suspicious" : "warn"
+    "style": "warn",
+    "suspicious": "warn"
   },
   "overrides": [
     {
@@ -26,13 +27,13 @@
     "promise"
   ],
   "rules": {
-    "array-type"                          : 0,
-    "capitalized-comments"                : 0,
+    "array-type": 0,
+    "capitalized-comments": 0,
     "eslint-plugin-import/no-named-export": 0,
-    "explicit-function-return-type"       : 0,
-    "exports-last"                        : 0,
-    "filename-case"                       : 0,
-    "max-depth"                           : [
+    "explicit-function-return-type": 0,
+    "exports-last": 0,
+    "filename-case": 0,
+    "max-depth": [
       2,
       {
         "max": 4
@@ -41,26 +42,26 @@
     "max-lines-per-function": [
       1,
       {
-        "IIFEs"         : true,
-        "max"           : 50,
+        "IIFEs": true,
+        "max": 50,
         "skipBlankLines": true,
-        "skipComments"  : true
+        "skipComments": true
       }
     ],
-    "no-async-await"                           : 0,
-    "no-optional-chaining"                     : 0,
-    "no-rest-spread-properties"                : 0,
-    "no-ternary"                               : 0,
-    "no-undef"                                 : 0,
-    "no-undefined"                             : 0,
-    "prefer-default-export"                    : 0,
-    "sort-imports"                             : 0,
+    "no-async-await": 0,
+    "no-optional-chaining": 0,
+    "no-rest-spread-properties": 0,
+    "no-ternary": 0,
+    "no-undef": 0,
+    "no-undefined": 0,
+    "prefer-default-export": 0,
+    "sort-imports": 0,
     "typescript/explicit-module-boundary-types": 0,
-    "typescript/no-floating-promises"          : 0,
-    "unicorn/no-array-for-each"                : 0,
-    "unicorn/no-null"                          : 0,
-    "unicorn/no-useless-spread"                : 0,
-    "unicorn/prefer-includes"                  : 0,
-    "yoda"                                     : 0
+    "typescript/no-floating-promises": 0,
+    "unicorn/no-array-for-each": 0,
+    "unicorn/no-null": 0,
+    "unicorn/no-useless-spread": 0,
+    "unicorn/prefer-includes": 0,
+    "yoda": 0
   }
 }
