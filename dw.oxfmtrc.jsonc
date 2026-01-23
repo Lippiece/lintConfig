@@ -5,7 +5,8 @@
   "singleQuote": true,
   "printWidth": 80,
   "trailingComma": "none",
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "bracketSameLine": false,
-  "htmlWhitespaceSensitivity": "ignore"
+  "quoteProps": "preserve",
+  "htmlWhitespaceSensitivity": "ignore",
 }
