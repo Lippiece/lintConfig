@@ -6,4 +6,10 @@
   "arrowParens": "avoid",
   "bracketSameLine": false,
   "htmlWhitespaceSensitivity": "ignore",
+  "experimentalTailwindcss": {
+    "stylesheet": "/home/lippiece/.config/lintConfig/stylesheet.css",
+    "attributes": ["class", "className"],
+    "functions": ["clsx", "cn"],
+    "preserveWhitespace": true,
+  },
 }
