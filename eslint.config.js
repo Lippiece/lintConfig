@@ -20,7 +20,6 @@ import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin"
 import unocss from "@unocss/eslint-config/flat"
 import biome from "eslint-config-biome"
-import alignAssignments from "eslint-plugin-align-assignments"
 import arrayFunc from "eslint-plugin-array-func"
 import eslintPluginAstro from "eslint-plugin-astro"
 // import betterTailwindCss from "eslint-plugin-better-tailwindcss"
@@ -36,7 +35,6 @@ import perfectionist from "eslint-plugin-perfectionist"
 import preferArrow from "eslint-plugin-prefer-arrow-functions"
 import pluginPromise from "eslint-plugin-promise"
 import pluginSecurity from "eslint-plugin-security"
-import sonarjs from "eslint-plugin-sonarjs"
 import sortKeysFix from "eslint-plugin-sort-keys-fix"
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook"
@@ -85,7 +83,6 @@ export default [
   ...tseslint.configs.all,
   js.configs.all,
   eslintPluginUnicorn.configs.all,
-  eslintPluginUnicorn.configs.recommended,
   {
     rules: {
       "unicorn/expiring-todo-comments": 0,
@@ -101,14 +98,6 @@ export default [
           },
         },
       ],
-    },
-  },
-  sonarjs.configs.recommended,
-  {
-    rules: {
-      "sonarjs/no-unknown-property"      : 0,
-      "sonarjs/prefer-nullish-coalescing": 0,
-      "sonarjs/rules-of-hooks"           : 0,
     },
   },
   perfectionist.configs["recommended-natural"],
@@ -265,10 +254,10 @@ export default [
 
       sourceType: "module",
     },
+    name: "Daddy",
 
     plugins: {
       "@stylistic"            : stylistic,
-      "align-assignments"     : alignAssignments,
       "only-warn"             : onlyWarn,
       "prefer-arrow-functions": fixupPluginRules(preferArrow),
       "sort-keys-fix"         : fixupPluginRules(sortKeysFix),
@@ -276,17 +265,7 @@ export default [
     },
 
     rules: {
-      "@microsoft/sdl/no-html-method"    : 0,
-      "@stylistic/indent"                : 0,
-      "@stylistic/key-spacing"           : [1, { align: {}, multiLine: {} }],
-      "@stylistic/member-delimiter-style": [
-        1,
-        {
-          multiline: {
-            delimiter: "none",
-          },
-        },
-      ],
+      "@microsoft/sdl/no-html-method"             : 0,
       "@stylistic/padding-line-between-statements": [
         1,
         { blankLine: "always", next: "return", prev: "*" },
@@ -372,7 +351,8 @@ export default [
       "@typescript-eslint/return-await"                                : 1,
       "@typescript-eslint/strict-boolean-expressions"                  : 0,
       "@typescript-eslint/switch-exhaustiveness-check"                 : 1,
-      "align-assignments/align-assignments"                            : 1,
+      "antfu/consistent-chaining"                                      : 1,
+      "antfu/consistent-list-newline"                                  : 1,
       "antfu/import-dedupe"                                            : 1,
       "antfu/no-top-level-await"                                       : 0,
       "astro/semi"                                                     : [0, "never"],
@@ -384,6 +364,7 @@ export default [
       "etc/no-misused-generics"                                        : 0,
       "exports-last"                                                   : 0,
       "func-style"                                                     : [1, "expression"],
+      "import-x/no-absolute-path"                                      : 1,
       "import/no-unused-modules"                                       : "off",
       "import/unambiguous"                                             : 0,
       indent                                                           : 0,
@@ -412,6 +393,7 @@ export default [
       "no-multi-spaces"                                                : 0,
       "no-ternary"                                                     : 0,
       "no-undef"                                                       : 0,
+      "no-undefined"                                                   : 0,
       "no-underscore-dangle"                                           : [
         1,
         {
@@ -534,15 +516,25 @@ export default [
     },
 
     rules: {
-      "functional/immutable-data"                : 0,
-      "import/first"                             : 0,
-      parse                                      : 0,
-      "sonarjs/pluginRules-of-hooks"             : 0,
-      "sonarjs/sonar-no-fallthrough"             : 0,
+      "functional/immutable-data"            : 0,
+      "import/first"                         : 0,
+      parse                                  : 0,
+      "vue-scoped-css/v-deep-pseudo-style"   : 1,
+      "vue-scoped-css/v-global-pseudo-style" : 1,
+      "vue-scoped-css/v-slotted-pseudo-style": 1,
+      "vue/block-order"                      : [
+        1,
+        {
+          order: ["script", "template", "style"],
+        },
+      ],
       "vue/component-api-style"                  : 1,
+      "vue/component-name-in-template-casing"    : 1,
+      "vue/component-options-name-casing"        : 1,
       "vue/define-emits-declaration"             : 1,
       "vue/define-macros-order"                  : 1,
       "vue/define-props-declaration"             : 1,
+      "vue/define-props-destructuring"           : 1,
       "vue/dot-notation"                         : 1,
       "vue/eqeqeq"                               : 1,
       "vue/html-button-has-type"                 : 1,
@@ -556,15 +548,23 @@ export default [
       "vue/next-tick-style"                      : 1,
       "vue/no-bare-strings-in-template"          : 0,
       "vue/no-boolean-default"                   : 1,
+      "vue/no-constant-condition"                : 1,
       "vue/no-duplicate-attr-inheritance"        : 1,
+      "vue/no-duplicate-class-names"             : 1,
       "vue/no-implicit-coercion"                 : 1,
       "vue/no-import-compiler-macros"            : 1,
+      "vue/no-irregular-whitespace"              : 1,
+      "vue/no-literals-in-template"              : 1,
       "vue/no-multiple-objects-in-class"         : 1,
+      "vue/no-multiple-template-root"            : 1,
+      "vue/no-negated-condition"                 : 1,
+      "vue/no-negated-v-if-condition"            : 1,
       "vue/no-ref-object-reactivity-loss"        : 1,
       "vue/no-root-v-if"                         : 1,
       "vue/no-static-inline-styles"              : 1,
       "vue/no-template-target-blank"             : 1,
       "vue/no-undef-components"                  : 0,
+      "vue/no-undef-directives"                  : 1,
       "vue/no-undef-properties"                  : 1,
       "vue/no-unused-emit-declarations"          : 1,
       "vue/no-unused-properties"                 : 1,
@@ -584,6 +584,8 @@ export default [
       "vue/prefer-true-attribute-shorthand"      : 1,
       "vue/prefer-use-template-ref"              : 1,
       "vue/require-emit-validator"               : 1,
+      "vue/require-explicit-slots"               : 1,
+      "vue/require-expose"                       : 1,
       "vue/require-macro-variable-name"          : 1,
       "vue/require-typed-object-prop"            : 1,
       "vue/require-typed-ref"                    : 1,
@@ -592,6 +594,7 @@ export default [
       "vue/v-for-delimiter-style"                : 1,
       "vue/v-if-else-key"                        : 1,
       "vue/v-on-handler-style"                   : 0,
+      "vue/valid-v-model"                        : 1,
       "vuejs-accessibility/label-has-for"        : [
         1,
         {
@@ -600,6 +603,9 @@ export default [
           },
         },
       ],
+      "vuejs-accessibility/no-aria-hidden-on-focusable": 1,
+
+      "vuejs-accessibility/no-role-presentation-on-focusable": 1,
     },
   }, // NOTE: Svelte
   ...svelte.configs.all,
@@ -638,8 +644,15 @@ export default [
     },
   }, // NOTE: JSON
   {
-    files: ["**/*.json"],
+    files  : ["**/*.json"],
     ...tseslint.configs.disableTypeChecked,
+    plugins: {
+      "@stylistic": stylistic,
+    },
+    rules: {
+      ...tseslint.configs.disableTypeChecked.rules,
+      "@stylistic/key-spacing": [1, { align: {}, multiLine: {} }],
+    },
   },
   ...storybook.configs["flat/recommended"],
 ]
