@@ -45,17 +45,19 @@
         }
       }
     ],
-    "align-assignments/align-assignments"       : 1,
-    "array-type"                                : 0,
-    "capitalized-comments"                      : 0,
-    "eslint-plugin-import/group-exports"        : 0,
-    "eslint-plugin-import/no-named-export"      : 0,
-    "eslint-plugin-import/unambiguous"          : 0,
-    "eslint-plugin-promise/prefer-await-to-then": 0,
-    "explicit-function-return-type"             : 0,
-    "exports-last"                              : 0,
-    "filename-case"                             : 0,
-    "max-depth"                                 : [
+    "align-assignments/align-assignments"            : 1,
+    "array-type"                                     : 0,
+    "capitalized-comments"                           : 0,
+    "eslint-plugin-import/group-exports"             : 0,
+    "eslint-plugin-import/no-named-export"           : 0,
+    "eslint-plugin-import/unambiguous"               : 0,
+    "eslint-plugin-promise/avoid-new"                : 0,
+    "eslint-plugin-promise/prefer-await-to-callbacks": 0,
+    "eslint-plugin-promise/prefer-await-to-then"     : 0,
+    "explicit-function-return-type"                  : 0,
+    "exports-last"                                   : 0,
+    "filename-case"                                  : 0,
+    "max-depth"                                      : [
       2,
       {
         "max": 4
