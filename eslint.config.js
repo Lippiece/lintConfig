@@ -598,7 +598,8 @@ export default [
       "vuejs-accessibility/label-has-for"        : [
         1,
         {
-          required: {
+          controlComponents: ["Field", "GInput", "NativeSelect", "LabelInput"],
+          required         : {
             some: ["nesting", "id"],
           },
         },

@@ -9,4 +9,8 @@
   "bracketSameLine": false,
   "quoteProps": "preserve",
   "htmlWhitespaceSensitivity": "ignore",
+  "experimentalTailwindcss": {
+    "stylesheet": "/home/lippiece/.config/lintConfig/stylesheet.css",
+    "attributes": ["class", ":class", "className"],
+  },
 }
