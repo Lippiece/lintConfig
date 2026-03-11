@@ -16,6 +16,7 @@
     "strictNullChecks": true,
     "allowJs": true,
     "checkJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "target": "esnext"
   }
 }
