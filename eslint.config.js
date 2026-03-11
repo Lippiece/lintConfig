@@ -11,6 +11,7 @@ import {
   sortTsconfig,
   toml,
   typescript,
+  vue,
   yaml,
 } from "@antfu/eslint-config"
 import { fixupPluginRules } from "@eslint/compat"
@@ -63,7 +64,7 @@ const antfu = await combine(
   sortPackageJson(),
   sortTsconfig(),
   toml(),
-  // vue(),
+  vue(),
   yaml(),
   astro({
     overrides: {
@@ -101,7 +102,8 @@ export default [
     },
   },
   perfectionist.configs["recommended-natural"],
-  pluginSecurity.configs.recommended, // NOTE: Web Components
+  pluginSecurity.configs.recommended,
+  // NOTE: Web Components
   wc["flat/recommended"],
   wc["flat/best-practice"],
   {
@@ -180,9 +182,11 @@ export default [
       "canonical/prefer-inline-type-import"     : 0,
     },
   },
-  pluginPromise.configs["flat/recommended"], // NOTE: SDL (security and performance)
+  pluginPromise.configs["flat/recommended"],
+  // NOTE: SDL (security and performance)
   ...pluginMicrosoftSdl.configs.typescript,
-  ...pluginMicrosoftSdl.configs.common, // NOTE: `Array` functions
+  ...pluginMicrosoftSdl.configs.common,
+  // NOTE: `Array` functions
   {
     plugins: {
       "array-func": arrayFunc,
@@ -195,8 +199,10 @@ export default [
       "array-func/prefer-flat"            : 1,
       "array-func/prefer-flat-map"        : 1,
     },
-  }, // NOTE: Browser compatibility
-  compat.configs["flat/recommended"], // NOTE: Functional style
+  },
+  // NOTE: Browser compatibility
+  compat.configs["flat/recommended"],
+  // NOTE: Functional style
   // functional.configs.recommended,
   // {
   //   rules: {
@@ -210,7 +216,8 @@ export default [
   // },
 
   // NOTE: Unocss
-  ...(hasUno ? [unocss] : []), // NOTE: MVC architecture
+  ...(hasUno ? [unocss] : []),
+  // NOTE: MVC architecture
   {
     plugins: {
       boundaries,
@@ -234,7 +241,8 @@ export default [
     rules: {
       "max-lines-per-function": 0,
     },
-  }, // HTML
+  },
+  // HTML
   {
     ...html.configs["flat/all"],
     files: ["**/*.html"],
@@ -268,7 +276,8 @@ export default [
       "@html-eslint/require-open-graph-protocol": 1,
       "@html-eslint/sort-attrs"                 : 1,
     },
-  }, // NOTE: Astro
+  },
+  // NOTE: Astro
   ...eslintPluginAstro.configs.all,
   {
     // Don't attempt to use typescript rules in astro files
@@ -290,10 +299,9 @@ export default [
       "astro/semi": [0, "never"],
     },
     ...tseslint.configs.disableTypeChecked,
-  }, // NOTE: Vue
-  ...pluginVue.configs["flat/essential"],
-  ...pluginVue.configs["flat/recommended"],
-  ...pluginVue.configs["flat/strongly-recommended"],
+  },
+  // NOTE: Vue
+  ...pluginVue.configs["flat/strongly-recommended"].slice(2),
   ...pluginVueA11y.configs["flat/recommended"],
   ...eslintPluginVueScopedCSS.configs["flat/recommended"],
   {
@@ -400,7 +408,8 @@ export default [
 
       "vuejs-accessibility/no-role-presentation-on-focusable": 1,
     },
-  }, // NOTE: Svelte
+  },
+  // NOTE: Svelte
   ...svelte.configs.all,
   {
     languageOptions: {
@@ -435,7 +444,8 @@ export default [
       "svelte/no-trailing-spaces"  : 0,
       "svelte/no-unused-class-name": 0,
     },
-  }, // NOTE: JSON
+  },
+  // NOTE: JSON
   {
     files  : ["**/*.json"],
     ...tseslint.configs.disableTypeChecked,
