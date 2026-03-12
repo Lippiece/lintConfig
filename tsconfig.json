@@ -13,6 +13,8 @@
   ],
   "compilerOptions": {
     "composite": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strictNullChecks": true,
     "allowJs": true,
     "checkJs": true,

@@ -64,7 +64,7 @@ const antfu = await combine(
   sortPackageJson(),
   sortTsconfig(),
   toml(),
-  vue(),
+  vue({ typescript: true }),
   yaml(),
   astro({
     overrides: {
