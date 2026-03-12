@@ -461,6 +461,7 @@ export default [
 
   // NOTE: Main config
   {
+    files          : ["**.test*", "**.js", "**.ts", "**.svelte", "**.astro", "**.vue"],
     languageOptions: {
       ecmaVersion: "latest",
 
