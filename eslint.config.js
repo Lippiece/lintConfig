@@ -122,19 +122,19 @@ export default [
       "n/no-unsupported-features/es-builtins": [
         1,
         {
-          version: ">=22.0.0",
+          version: ">=25.0.0",
         },
       ],
       "n/no-unsupported-features/es-syntax": [
         1,
         {
-          version: ">=22.0.0",
+          version: ">=25.0.0",
         },
       ],
       "n/no-unsupported-features/node-builtins": [
         1,
         {
-          version: ">=22.0.0",
+          version: ">=25.0.0",
         },
       ],
       "n/prefer-global/buffer"           : 1,

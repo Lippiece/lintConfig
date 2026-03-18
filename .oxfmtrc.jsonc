@@ -6,9 +6,8 @@
   "arrowParens": "avoid",
   "bracketSameLine": false,
   "htmlWhitespaceSensitivity": "ignore",
-  // BUG: v0.31: https://github.com/oxc-project/oxc/issues/19255
-  "experimentalTailwindcss": {
-    "stylesheet": "/home/lippiece/.config/lintConfig/stylesheet.css",
-    "attributes": ["class", ":class", "className"],
+  "sortImports": { "newlinesBetween": true },
+  "sortTailwindcss": {
+    "config": "/home/lippiece/.config/lintConfig/stylesheet.css",
   },
 }
