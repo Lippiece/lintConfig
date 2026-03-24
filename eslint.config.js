@@ -15,7 +15,6 @@ import {
   yaml,
 } from "@antfu/eslint-config"
 import { fixupPluginRules } from "@eslint/compat"
-import js from "@eslint/js"
 import html from "@html-eslint/eslint-plugin"
 import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin"
@@ -81,8 +80,6 @@ export default [
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
-  ...tseslint.configs.all,
-  js.configs.all,
   eslintPluginUnicorn.configs.all,
   {
     rules: {
@@ -175,6 +172,7 @@ export default [
     rules: {
       "canonical/destructuring-property-newline": 0,
       "canonical/export-specifier-newline"      : 0,
+      "canonical/id-match"                      : 0,
       "canonical/import-specifier-newline"      : 0,
       "canonical/no-barrel-import"              : 1,
       "canonical/no-export-all"                 : 1,
@@ -383,6 +381,7 @@ export default [
       "vue/prefer-template"                      : 1,
       "vue/prefer-true-attribute-shorthand"      : 1,
       "vue/prefer-use-template-ref"              : 1,
+      "vue/prop-name-casing"                     : 0,
       "vue/require-emit-validator"               : 1,
       "vue/require-explicit-slots"               : 1,
       "vue/require-expose"                       : 1,
@@ -523,26 +522,17 @@ export default [
           default: "array-simple",
         },
       ],
-      "@typescript-eslint/await-thenable"                 : 1,
-      "@typescript-eslint/consistent-generic-constructors": 1,
-      "@typescript-eslint/consistent-indexed-object-style": 1,
-      "@typescript-eslint/consistent-type-assertions"     : 1,
-      "@typescript-eslint/consistent-type-exports"        : 1,
-      "@typescript-eslint/consistent-type-imports"        : 0,
-      "@typescript-eslint/default-param-last"             : 1,
-      "@typescript-eslint/dot-notation"                   : 1,
-      "@typescript-eslint/explicit-function-return-type"  : 0,
-      "@typescript-eslint/explicit-member-accessibility"  : 0,
-      "@typescript-eslint/explicit-module-boundary-types" : 0,
-      "@typescript-eslint/naming-convention"              : [
-        1,
-        {
-          format            : ["camelCase", "PascalCase"],
-          leadingUnderscore : "allowSingleOrDouble",
-          selector          : ["function", "variable"],
-          trailingUnderscore: "allowSingleOrDouble",
-        },
-      ],
+      "@typescript-eslint/await-thenable"                              : 1,
+      "@typescript-eslint/consistent-generic-constructors"             : 1,
+      "@typescript-eslint/consistent-indexed-object-style"             : 1,
+      "@typescript-eslint/consistent-type-assertions"                  : 1,
+      "@typescript-eslint/consistent-type-exports"                     : 1,
+      "@typescript-eslint/consistent-type-imports"                     : 0,
+      "@typescript-eslint/default-param-last"                          : 1,
+      "@typescript-eslint/dot-notation"                                : 1,
+      "@typescript-eslint/explicit-function-return-type"               : 0,
+      "@typescript-eslint/explicit-member-accessibility"               : 0,
+      "@typescript-eslint/explicit-module-boundary-types"              : 0,
       "@typescript-eslint/no-array-delete"                             : 1,
       "@typescript-eslint/no-confusing-non-null-assertion"             : 1,
       "@typescript-eslint/no-confusing-void-expression"                : 1,
@@ -568,6 +558,7 @@ export default [
       "@typescript-eslint/no-unsafe-call"                              : 0,
       "@typescript-eslint/no-unsafe-enum-comparison"                   : 1,
       "@typescript-eslint/no-unsafe-member-access"                     : 0,
+      camelcase                                                        : 0,
       "@typescript-eslint/no-unsafe-return"                            : 1,
       "@typescript-eslint/no-unsafe-type-assertion"                    : 1,
       "@typescript-eslint/no-unused-expressions"                       : 0,
@@ -595,7 +586,6 @@ export default [
       "antfu/import-dedupe"                                            : 1,
       "antfu/no-top-level-await"                                       : 0,
       "astro/semi"                                                     : [0, "never"],
-      camelcase                                                        : 0,
       "capitalized-comments"                                           : 0,
       "comma-dangle"                                                   : 0,
       "compat/compat"                                                  : 0,
