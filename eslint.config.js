@@ -1,3 +1,6 @@
+import fs from "node:fs"
+import path from "node:path"
+
 import {
   astro,
   combine,
@@ -13,26 +16,19 @@ import {
 } from "@antfu/eslint-config"
 import { fixupPluginRules } from "@eslint/compat"
 import html from "@html-eslint/eslint-plugin"
-import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin"
 import unocss from "@unocss/eslint-config/flat"
 import biome from "eslint-config-biome"
 import antfuPlugin from "eslint-plugin-antfu"
-import arrayFunc from "eslint-plugin-array-func"
 import eslintPluginAstro from "eslint-plugin-astro"
 // import betterTailwindCss from "eslint-plugin-better-tailwindcss"
 import boundaries from "eslint-plugin-boundaries"
-import canonical from "eslint-plugin-canonical"
 import compat from "eslint-plugin-compat"
 // import functional from "eslint-plugin-functional"
-import eslintPluginImportX from "eslint-plugin-import-x"
-import nodePlugin from "eslint-plugin-n"
 import onlyWarn from "eslint-plugin-only-warn"
 import oxlint from "eslint-plugin-oxlint"
 import perfectionist from "eslint-plugin-perfectionist"
 import preferArrow from "eslint-plugin-prefer-arrow-functions"
-import pluginPromise from "eslint-plugin-promise"
-import pluginSecurity from "eslint-plugin-security"
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook"
 import svelte from "eslint-plugin-svelte"
@@ -43,8 +39,6 @@ import pluginVueA11y from "eslint-plugin-vuejs-accessibility"
 import { configs as wc } from "eslint-plugin-wc"
 import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
-import fs from "node:fs"
-import path from "node:path"
 import tseslint from "typescript-eslint"
 
 const antfu = await combine(
@@ -130,7 +124,6 @@ export default [
     },
 
     rules: {
-      "@microsoft/sdl/no-html-method"    : 0,
       "antfu/consistent-chaining"        : 1,
       "antfu/consistent-list-newline"    : 1,
       "antfu/import-dedupe"              : 1,
@@ -144,7 +137,6 @@ export default [
       "etc/no-misused-generics"          : 0,
       "exports-last"                     : 0,
       "func-style"                       : [1, "expression"],
-      "import-x/no-absolute-path"        : 1,
       "import/no-unused-modules"         : "off",
       "import/unambiguous"               : 0,
       indent                             : 0,
@@ -180,9 +172,6 @@ export default [
         },
       ],
       "prettier/prettier"                      : 0,
-      "promise/always-return"                  : 0,
-      "promise/no-multiple-resolved"           : 0,
-      "promise/no-return-in-finally"           : 0,
       "putout/putout"                          : 0,
       quotes                                   : 0,
       semi                                     : 0,
@@ -198,7 +187,6 @@ export default [
       "xss/no-mixed-html"                      : 0,
     },
   },
-  pluginSecurity.configs.recommended,
   // NOTE: Web Components
   wc["flat/recommended"],
   wc["flat/best-practice"],
@@ -208,93 +196,6 @@ export default [
     },
     rules: {
       "tree-shaking/no-side-effects-in-initialization": 0,
-    },
-  },
-  nodePlugin.configs["flat/recommended-script"],
-  {
-    rules: {
-      "n/no-missing-import"                  : 0,
-      "n/no-sync"                            : 1,
-      "n/no-unsupported-features/es-builtins": [
-        1,
-        {
-          version: ">=25.0.0",
-        },
-      ],
-      "n/no-unsupported-features/es-syntax": [
-        1,
-        {
-          version: ">=25.0.0",
-        },
-      ],
-      "n/no-unsupported-features/node-builtins": [
-        1,
-        {
-          version: ">=25.0.0",
-        },
-      ],
-      "n/prefer-global/buffer"           : 1,
-      "n/prefer-global/process"          : 1,
-      "n/prefer-global/text-decoder"     : 1,
-      "n/prefer-global/text-encoder"     : 1,
-      "n/prefer-global/url"              : 1,
-      "n/prefer-global/url-search-params": 1,
-      "n/prefer-node-protocol"           : 1,
-      "n/prefer-promises/dns"            : 1,
-      "n/prefer-promises/fs"             : 1,
-    },
-  },
-  eslintPluginImportX.flatConfigs.recommended,
-  eslintPluginImportX.flatConfigs.typescript,
-  eslintPluginImportX.flatConfigs.errors,
-  eslintPluginImportX.flatConfigs.warnings,
-  {
-    rules: {
-      "import-x/newline-after-import"      : 1,
-      "import-x/no-amd"                    : 1,
-      "import-x/no-commonjs"               : 1,
-      "import-x/no-cycle"                  : 1,
-      "import-x/no-deprecated"             : 1,
-      "import-x/no-duplicates"             : 0,
-      "import-x/no-empty-named-blocks"     : 1,
-      "import-x/no-import-module-exports"  : 1,
-      "import-x/no-namespace"              : 1,
-      "import-x/no-relative-packages"      : 1,
-      "import-x/no-relative-parent-imports": 0,
-      "import-x/no-unresolved"             : 0,
-      "import-x/no-useless-path-segments"  : 1,
-      "import-x/order"                     : 0,
-    },
-  },
-  canonical.configs["flat/recommended"],
-  {
-    rules: {
-      "canonical/destructuring-property-newline": 0,
-      "canonical/export-specifier-newline"      : 0,
-      "canonical/id-match"                      : 0,
-      "canonical/import-specifier-newline"      : 0,
-      "canonical/no-barrel-import"              : 1,
-      "canonical/no-export-all"                 : 1,
-      "canonical/prefer-import-alias"           : 1,
-      "canonical/prefer-inline-type-import"     : 0,
-    },
-  },
-  pluginPromise.configs["flat/recommended"],
-  // NOTE: SDL (security and performance)
-  ...pluginMicrosoftSdl.configs.typescript,
-  ...pluginMicrosoftSdl.configs.common,
-  // NOTE: `Array` functions
-  {
-    plugins: {
-      "array-func": arrayFunc,
-    },
-    rules: {
-      "array-func/avoid-reverse"          : 1,
-      "array-func/from-map"               : 1,
-      "array-func/no-unnecessary-this-arg": 1,
-      "array-func/prefer-array-from"      : 1,
-      "array-func/prefer-flat"            : 1,
-      "array-func/prefer-flat-map"        : 1,
     },
   },
   // NOTE: Browser compatibility
@@ -377,7 +278,7 @@ export default [
     rules: {
       "astro/semi": 0,
     },
-    // BUG: HERE
+    // BUG: throws
     // ...tseslint.configs.all,
     // ...tseslint.configs.disableTypeChecked,
   },
@@ -391,7 +292,7 @@ export default [
     rules: {
       "astro/semi": [0, "never"],
     },
-    // BUG: HERE
+    // BUG: throws
     // ...tseslint.configs.all,
     // ...tseslint.configs.disableTypeChecked,
   },

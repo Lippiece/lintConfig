@@ -1,10 +1,12 @@
-import perfectionist from "eslint-plugin-perfectionist"
+import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
+import nodePlugin from "eslint-plugin-n"
+import pluginSecurity from "eslint-plugin-security"
 import { defineConfig } from "oxlint"
 
 const mergeRules = (
   left: { rules: Record<string, string> },
   right: { rules: Record<string, string> },
-) => ({ ...left.rules, ...right.rules })
+) => ({ rules: { ...left.rules, ...right.rules } })
 
 export default defineConfig({
   $schema   : "./node_modules/oxlint/configuration_schema.json",
@@ -22,6 +24,10 @@ export default defineConfig({
     "eslint-plugin-align-assignments",
     "eslint-plugin-sonarjs",
     "eslint-plugin-perfectionist",
+    "@microsoft/eslint-plugin-sdl",
+    "eslint-plugin-n",
+    "eslint-plugin-security",
+    "eslint-plugin-array-func",
   ],
   overrides: [
     {
@@ -54,6 +60,9 @@ export default defineConfig({
         },
       },
     ],
+    ...nodePlugin.configs["flat/recommended-script"].rules,
+    ...pluginMicrosoftSdl.configs.recommended.reduce(mergeRules).rules,
+    ...pluginSecurity.configs.recommended.rules,
     "align-assignments/align-assignments"             : 1,
     "array-type"                                      : 0,
     "capitalized-comments"                            : 0,
@@ -83,6 +92,9 @@ export default defineConfig({
         skipComments  : true,
       },
     ],
+    "n/no-missing-import"                      : 0,
+    "n/no-process-exit"                        : 0,
+    "eslint-plugin-import/no-default-export"   : 0,
     "no-async-await"                           : 0,
     "no-optional-chaining"                     : 0,
     "no-rest-spread-properties"                : 0,
@@ -101,8 +113,14 @@ export default defineConfig({
     "unicorn/no-null"                          : 0,
     "unicorn/no-useless-spread"                : 0,
     "unicorn/prefer-includes"                  : 0,
+    "eslint/new-cap"                           : 0,
+    "eslint-plugin-import/no-nodejs-modules"   : 0,
     yoda                                       : 0,
-    ...perfectionist.configs["recommended-natural"].rules,
-    "perfectionist/sort-objects": 1
+    "array-func/avoid-reverse"                 : 1,
+    "array-func/from-map"                      : 1,
+    "array-func/no-unnecessary-this-arg"       : 1,
+    "array-func/prefer-array-from"             : 1,
+    "array-func/prefer-flat"                   : 1,
+    "array-func/prefer-flat-map"               : 1,
   },
 })
