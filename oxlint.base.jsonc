@@ -1,9 +1,5 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "options": {
-    "typeAware": true,
-    "reportUnusedDisableDirectives": "warn",
-  },
   "categories": {
     "correctness": "warn",
     "nursery": "warn",
@@ -110,5 +106,10 @@
     "unicorn/no-useless-spread": 0,
     "unicorn/prefer-includes": 0,
     "yoda": 0,
+    "no-floating-promises": 1,
+    "no-useless-spread": 1,
+    "group-exports": 1,
+    "prefer-await-to-then": 1,
+    "no-null": 1,
   },
 }

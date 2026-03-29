@@ -29,9 +29,6 @@
     "eslint-plugin-n",
     "eslint-plugin-array-func"
   ],
-  "options": {
-    "typeAware": true
-  },
   "env": {
     "builtin": true,
     "es2026": true,
