@@ -7,15 +7,16 @@
     "*.ts",
     "**/*",
     "./*",
-    "*",
+    "*.*",
     "src/*",
+    "tsconfig.json",
     "eslint.config.js"
   ],
   "compilerOptions": {
     "composite": true,
     "module": "nodenext",
-    "moduleResolution": "nodenext",
     "strictNullChecks": true,
+    "moduleResolution": "nodenext",
     "allowJs": true,
     "checkJs": true,
     "jsx": "react",

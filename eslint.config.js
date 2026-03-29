@@ -4,11 +4,8 @@ import {
   ignores,
   javascript,
   jsdoc,
-  jsonc,
   markdown,
   node,
-  sortPackageJson,
-  sortTsconfig,
   toml,
   typescript,
   vue,
@@ -20,6 +17,7 @@ import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
 import stylistic from "@stylistic/eslint-plugin"
 import unocss from "@unocss/eslint-config/flat"
 import biome from "eslint-config-biome"
+import antfuPlugin from "eslint-plugin-antfu"
 import arrayFunc from "eslint-plugin-array-func"
 import eslintPluginAstro from "eslint-plugin-astro"
 // import betterTailwindCss from "eslint-plugin-better-tailwindcss"
@@ -35,12 +33,10 @@ import perfectionist from "eslint-plugin-perfectionist"
 import preferArrow from "eslint-plugin-prefer-arrow-functions"
 import pluginPromise from "eslint-plugin-promise"
 import pluginSecurity from "eslint-plugin-security"
-import sortKeysFix from "eslint-plugin-sort-keys-fix"
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook"
 import svelte from "eslint-plugin-svelte"
 import treeShaking from "eslint-plugin-tree-shaking"
-import eslintPluginUnicorn from "eslint-plugin-unicorn"
 import pluginVue from "eslint-plugin-vue"
 import eslintPluginVueScopedCSS from "eslint-plugin-vue-scoped-css"
 import pluginVueA11y from "eslint-plugin-vuejs-accessibility"
@@ -54,51 +50,154 @@ import tseslint from "typescript-eslint"
 const antfu = await combine(
   // comments(),
   ignores(),
-  javascript(),
   typescript(),
+  javascript(),
   jsdoc(),
-  jsonc(),
   markdown(),
   node(),
-  sortPackageJson(),
-  sortTsconfig(),
   toml(),
-  vue({ typescript: true }),
+  vue({
+    stylistic : false,
+    typescript: true,
+  }),
   yaml(),
   astro({
     overrides: {
       "astro/semi": [0, "never"],
     },
+    stylistic: true,
   }),
 )
 
 const hasUno = fs.existsSync(path.resolve(process.cwd(), "uno.config.ts"))
 
 export default [
+  tseslint.configs.base,
   // NOTE: Opinionated
-  ...antfu, // NOTE: Global
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
-  eslintPluginUnicorn.configs.all,
+  ...antfu,
+  // NOTE: Global
+  // NOTE: Main config
   {
+    files: [
+      "**.test*",
+      "**.js",
+      "**.ts",
+      "**.svelte",
+      "**.astro",
+      "**.vue",
+      ".json",
+      ".jsonc",
+    ],
+    languageOptions: {
+      ecmaVersion: "latest",
+
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2024,
+        ...globals.es2025,
+        ...globals.es2026,
+      },
+
+      parserOptions: {
+        ecmaFeatures: {
+          arrowFunctions: true,
+          modules       : true,
+        },
+
+        extraFileExtensions: [
+          ".vue",
+          ".json",
+          ".svelte",
+          ".astro",
+          ".json",
+          ".jsonc",
+        ],
+        projectService: {
+          allowDefaultProject: ["*.json"],
+        },
+      },
+
+      sourceType: "module",
+    },
+    name: "Daddy",
+
+    plugins: {
+      antfu                   : antfuPlugin,
+      "only-warn"             : onlyWarn,
+      "prefer-arrow-functions": fixupPluginRules(preferArrow),
+      "write-good-comments"   : fixupPluginRules(writeGoodComments),
+    },
+
     rules: {
-      "unicorn/expiring-todo-comments": 0,
-      "unicorn/filename-case"         : 0,
-      "unicorn/prefer-includes"       : 1,
-      "unicorn/prevent-abbreviations" : [
+      "@microsoft/sdl/no-html-method"    : 0,
+      "antfu/consistent-chaining"        : 1,
+      "antfu/consistent-list-newline"    : 1,
+      "antfu/import-dedupe"              : 1,
+      "antfu/no-top-level-await"         : 0,
+      "astro/semi"                       : [0, "never"],
+      camelcase                          : 0,
+      "capitalized-comments"             : 0,
+      "comma-dangle"                     : 0,
+      "compat/compat"                    : 0,
+      "drizzle/enforce-delete-with-where": 0,
+      "etc/no-misused-generics"          : 0,
+      "exports-last"                     : 0,
+      "func-style"                       : [1, "expression"],
+      "import-x/no-absolute-path"        : 1,
+      "import/no-unused-modules"         : "off",
+      "import/unambiguous"               : 0,
+      indent                             : 0,
+      "jest/prefer-expect-assertions"    : 0,
+      "jest/require-hook"                : 0,
+      "linebreak-style"                  : 0,
+      "max-lines"                        : 0,
+      "max-statements"                   : [0, { max: 15 }],
+      "no-inline-comments"               : 0,
+      "no-multi-spaces"                  : 0,
+      "no-ternary"                       : 0,
+      "no-undef"                         : 0,
+      "no-undefined"                     : 0,
+      "no-underscore-dangle"             : [
         1,
         {
-          replacements: {
-            props: false,
-            ref  : false,
-            refs : false,
-          },
+          allowFunctionParams: true,
         },
       ],
+      "no-unused-vars"                               : 0,
+      "no-useless-assignment"                        : 0,
+      "no-warning-comments"                          : 0,
+      "one-var"                                      : 0,
+      parse                                          : 0,
+      "prefer-arrow-functions/prefer-arrow-functions": [
+        1,
+        {
+          allowNamedFunctions   : false,
+          classPropertiesAllowed: false,
+          disallowPrototype     : true,
+          returnStyle           : "implicit",
+          singleReturnOnly      : false,
+        },
+      ],
+      "prettier/prettier"                      : 0,
+      "promise/always-return"                  : 0,
+      "promise/no-multiple-resolved"           : 0,
+      "promise/no-return-in-finally"           : 0,
+      "putout/putout"                          : 0,
+      quotes                                   : 0,
+      semi                                     : 0,
+      "sort-imports"                           : 0,
+      "sort-keys"                              : 0,
+      "style/quotes"                           : 0,
+      "total-functions/require-strict-mode"    : 0,
+      "unused-imports/no-unused-imports"       : 0,
+      "unused-imports/no-unused-vars"          : 0,
+      "vue/v-on-handler-style"                 : 0,
+      "vue/valid-v-for"                        : 0,
+      "write-good-comments/write-good-comments": 1,
+      "xss/no-mixed-html"                      : 0,
     },
   },
-  perfectionist.configs["recommended-natural"],
   pluginSecurity.configs.recommended,
   // NOTE: Web Components
   wc["flat/recommended"],
@@ -212,7 +311,6 @@ export default [
   //     "functional/no-expression-statements": 0,
   //   },
   // },
-
   // NOTE: Unocss
   ...(hasUno ? [unocss] : []),
   // NOTE: MVC architecture
@@ -222,11 +320,6 @@ export default [
     },
     rules: { ...boundaries.configs.recommended.rules },
   },
-  // NOTE: Remove redundant rules
-  biome,
-  ...oxlint.buildFromOxlintConfigFile(
-    "/home/lippiece/.config/lintConfig/.oxlintrc.json",
-  ),
   // NOTE: better-tailwindcss
   // WARN: Very slow
   // {
@@ -242,7 +335,6 @@ export default [
   },
   // HTML
   {
-    ...html.configs["flat/all"],
     files: ["**/*.html"],
     rules: {
       "@html-eslint/id-naming-convention"       : 1,
@@ -274,6 +366,7 @@ export default [
       "@html-eslint/require-open-graph-protocol": 1,
       "@html-eslint/sort-attrs"                 : 1,
     },
+    ...html.configs["flat/all"],
   },
   // NOTE: Astro
   ...eslintPluginAstro.configs.all,
@@ -284,7 +377,9 @@ export default [
     rules: {
       "astro/semi": 0,
     },
-    ...tseslint.configs.disableTypeChecked,
+    // BUG: HERE
+    // ...tseslint.configs.all,
+    // ...tseslint.configs.disableTypeChecked,
   },
   {
     files          : ["**/*.astro/*.ts"],
@@ -296,7 +391,9 @@ export default [
     rules: {
       "astro/semi": [0, "never"],
     },
-    ...tseslint.configs.disableTypeChecked,
+    // BUG: HERE
+    // ...tseslint.configs.all,
+    // ...tseslint.configs.disableTypeChecked,
   },
   // NOTE: Vue
   ...pluginVue.configs["flat/strongly-recommended"].slice(2),
@@ -420,7 +517,6 @@ export default [
   },
   {
     files          : ["**/*.svelte"],
-    // See more details at: https://typescript-eslint.io/packages/parser/
     languageOptions: {
       parserOptions: {
         extraFileExtensions: [".svelte"],
@@ -446,223 +542,21 @@ export default [
   },
   // NOTE: JSON
   {
-    files  : ["**/*.json"],
-    ...tseslint.configs.disableTypeChecked,
+    files  : ["**/*.json", "*.json"],
+    name   : "json",
+    // ...tseslint.configs.disableTypeChecked,
     plugins: {
-      "@stylistic": stylistic,
+      perfectionist,
+      stylistic,
     },
     rules: {
       ...tseslint.configs.disableTypeChecked.rules,
-      "@stylistic/key-spacing": [1, { align: {}, multiLine: {} }],
+      ...perfectionist.configs["recommended-natural"].rules,
+      "stylistic/key-spacing": [1, { align: {}, multiLine: {} }],
     },
   },
   ...storybook.configs["flat/recommended"],
-
-  // NOTE: Main config
-  {
-    files          : ["**.test*", "**.js", "**.ts", "**.svelte", "**.astro", "**.vue"],
-    languageOptions: {
-      ecmaVersion: "latest",
-
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.es2024,
-        ...globals.es2025,
-      },
-
-      parserOptions: {
-        ecmaFeatures: {
-          arrowFunctions: true,
-          modules       : true,
-        },
-
-        extraFileExtensions: [
-          ".vue",
-          ".json",
-          ".svelte",
-          ".astro",
-          ".json",
-          ".jsonc",
-        ],
-        projectService: {
-          allowDefaultProject: ["*.json"],
-        },
-      },
-
-      sourceType: "module",
-    },
-    name: "Daddy",
-
-    plugins: {
-      "@stylistic"            : stylistic,
-      "only-warn"             : onlyWarn,
-      "prefer-arrow-functions": fixupPluginRules(preferArrow),
-      "sort-keys-fix"         : fixupPluginRules(sortKeysFix),
-      "write-good-comments"   : fixupPluginRules(writeGoodComments),
-    },
-
-    rules: {
-      "@microsoft/sdl/no-html-method"             : 0,
-      "@stylistic/padding-line-between-statements": [
-        1,
-        { blankLine: "always", next: "return", prev: "*" },
-        { blankLine: "always", next: "*", prev: ["const", "let", "var"] },
-        {
-          blankLine: "any",
-          next     : ["const", "let", "var"],
-          prev     : ["const", "let", "var"],
-        },
-      ],
-      "@stylistic/quotes"                              : 0,
-      "@typescript-eslint/adjacent-overload-signatures": 1,
-      "@typescript-eslint/array-type"                  : [
-        1,
-        {
-          default: "array-simple",
-        },
-      ],
-      "@typescript-eslint/await-thenable"                              : 1,
-      "@typescript-eslint/consistent-generic-constructors"             : 1,
-      "@typescript-eslint/consistent-indexed-object-style"             : 1,
-      "@typescript-eslint/consistent-type-assertions"                  : 1,
-      "@typescript-eslint/consistent-type-exports"                     : 1,
-      "@typescript-eslint/consistent-type-imports"                     : 0,
-      "@typescript-eslint/default-param-last"                          : 1,
-      "@typescript-eslint/dot-notation"                                : 1,
-      "@typescript-eslint/explicit-function-return-type"               : 0,
-      "@typescript-eslint/explicit-member-accessibility"               : 0,
-      "@typescript-eslint/explicit-module-boundary-types"              : 0,
-      "@typescript-eslint/no-array-delete"                             : 1,
-      "@typescript-eslint/no-confusing-non-null-assertion"             : 1,
-      "@typescript-eslint/no-confusing-void-expression"                : 1,
-      "@typescript-eslint/no-deprecated"                               : 1,
-      "@typescript-eslint/no-duplicate-type-constituents"              : 1,
-      "@typescript-eslint/no-inferrable-types"                         : 1,
-      "@typescript-eslint/no-magic-numbers"                            : 0,
-      "@typescript-eslint/no-meaningless-void-operator"                : 1,
-      "@typescript-eslint/no-misused-promises"                         : 1,
-      "@typescript-eslint/no-misused-spread"                           : 1,
-      "@typescript-eslint/no-non-null-assertion"                       : 0,
-      "@typescript-eslint/no-redundant-type-constituents"              : 1,
-      "@typescript-eslint/no-unnecessary-boolean-literal-compare"      : 1,
-      "@typescript-eslint/no-unnecessary-condition"                    : 1,
-      "@typescript-eslint/no-unnecessary-parameter-property-assignment": 1,
-      "@typescript-eslint/no-unnecessary-qualifier"                    : 1,
-      "@typescript-eslint/no-unnecessary-template-expression"          : 1,
-      "@typescript-eslint/no-unnecessary-type-arguments"               : 1,
-      "@typescript-eslint/no-unnecessary-type-assertion"               : 1,
-      "@typescript-eslint/no-unnecessary-type-parameters"              : 1,
-      "@typescript-eslint/no-unsafe-argument"                          : 0,
-      "@typescript-eslint/no-unsafe-assignment"                        : 0,
-      "@typescript-eslint/no-unsafe-call"                              : 0,
-      "@typescript-eslint/no-unsafe-enum-comparison"                   : 1,
-      "@typescript-eslint/no-unsafe-member-access"                     : 0,
-      camelcase                                                        : 0,
-      "@typescript-eslint/no-unsafe-return"                            : 1,
-      "@typescript-eslint/no-unsafe-type-assertion"                    : 1,
-      "@typescript-eslint/no-unused-expressions"                       : 0,
-      "@typescript-eslint/no-unused-vars"                              : 0,
-      "@typescript-eslint/no-useless-empty-export"                     : 1,
-      "@typescript-eslint/non-nullable-type-assertion-style"           : 1,
-      "@typescript-eslint/prefer-destructuring"                        : 1,
-      "@typescript-eslint/prefer-find"                                 : 1,
-      "@typescript-eslint/prefer-for-of"                               : 1,
-      "@typescript-eslint/prefer-includes"                             : 1,
-      "@typescript-eslint/prefer-nullish-coalescing"                   : 0,
-      "@typescript-eslint/prefer-optional-chain"                       : 1,
-      "@typescript-eslint/prefer-promise-reject-errors"                : 1,
-      "@typescript-eslint/prefer-readonly-parameter-types"             : 0,
-      "@typescript-eslint/prefer-reduce-type-parameter"                : 1,
-      "@typescript-eslint/prefer-regexp-exec"                          : 1,
-      "@typescript-eslint/prefer-string-starts-ends-with"              : 1,
-      "@typescript-eslint/promise-function-async"                      : 0,
-      "@typescript-eslint/require-array-sort-compare"                  : 1,
-      "@typescript-eslint/return-await"                                : 1,
-      "@typescript-eslint/strict-boolean-expressions"                  : 0,
-      "@typescript-eslint/switch-exhaustiveness-check"                 : 1,
-      "antfu/consistent-chaining"                                      : 1,
-      "antfu/consistent-list-newline"                                  : 1,
-      "antfu/import-dedupe"                                            : 1,
-      "antfu/no-top-level-await"                                       : 0,
-      "astro/semi"                                                     : [0, "never"],
-      "capitalized-comments"                                           : 0,
-      "comma-dangle"                                                   : 0,
-      "compat/compat"                                                  : 0,
-      "drizzle/enforce-delete-with-where"                              : 0,
-      "etc/no-misused-generics"                                        : 0,
-      "exports-last"                                                   : 0,
-      "func-style"                                                     : [1, "expression"],
-      "import-x/no-absolute-path"                                      : 1,
-      "import/no-unused-modules"                                       : "off",
-      "import/unambiguous"                                             : 0,
-      indent                                                           : 0,
-      "jest/prefer-expect-assertions"                                  : 0,
-      "jest/require-hook"                                              : 0,
-      // "jsdoc/check-line-alignment"                                     : 1,
-      // "jsdoc/match-name"                                               : 1,
-      // "jsdoc/no-bad-blocks"                                            : 1,
-      // "jsdoc/no-blank-block-descriptions"                              : 1,
-      // "jsdoc/no-blank-blocks"                                          : 1,
-      // "jsdoc/no-types"                                                 : 1,
-      // "jsdoc/require-description"                                      : 1,
-      // "jsdoc/require-description-complete-sentence"                    : 1,
-      // "jsdoc/require-example"                                          : 1,
-      // "jsdoc/require-hyphen-before-param-description"                  : 1,
-      // "jsdoc/require-jsdoc"                                            : 1,
-      // "jsdoc/require-template"                                         : 1,
-      // "jsdoc/sort-tags"                                                : 1,
-      // "jsdoc/tag-lines"                                                : 1,
-      // "jsdoc/text-escaping"                                            : 1,
-      "jsonc/auto"                                                     : 1,
-      "linebreak-style"                                                : 0,
-      "max-lines"                                                      : 0,
-      "max-statements"                                                 : [0, { max: 15 }],
-      "no-inline-comments"                                             : 0,
-      "no-multi-spaces"                                                : 0,
-      "no-ternary"                                                     : 0,
-      "no-undef"                                                       : 0,
-      "no-undefined"                                                   : 0,
-      "no-underscore-dangle"                                           : [
-        1,
-        {
-          allowFunctionParams: true,
-        },
-      ],
-      "no-unused-vars"                               : 0,
-      "no-useless-assignment"                        : 0,
-      "no-warning-comments"                          : 0,
-      "one-var"                                      : 0,
-      parse                                          : 0,
-      "prefer-arrow-functions/prefer-arrow-functions": [
-        1,
-        {
-          allowNamedFunctions   : false,
-          classPropertiesAllowed: false,
-          disallowPrototype     : true,
-          returnStyle           : "implicit",
-          singleReturnOnly      : false,
-        },
-      ],
-      "prettier/prettier"                      : 0,
-      "promise/always-return"                  : 0,
-      "promise/no-multiple-resolved"           : 0,
-      "promise/no-return-in-finally"           : 0,
-      "putout/putout"                          : 0,
-      quotes                                   : 0,
-      semi                                     : 0,
-      "sort-imports"                           : 0,
-      "sort-keys"                              : 0,
-      "sort-keys-fix/sort-keys-fix"            : 1,
-      "style/quotes"                           : 0,
-      "total-functions/require-strict-mode"    : 0,
-      "typescript-eslint/naming-convention"    : 0,
-      "unused-imports/no-unused-imports"       : 0,
-      "unused-imports/no-unused-vars"          : 0,
-      "vue/v-on-handler-style"                 : 0,
-      "vue/valid-v-for"                        : 0,
-      "write-good-comments/write-good-comments": 1,
-      "xss/no-mixed-html"                      : 0,
-    },
-  },
+  // NOTE: Remove redundant rules
+  biome,
+  ...oxlint.configs["flat/all"],
 ]
