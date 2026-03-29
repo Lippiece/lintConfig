@@ -1,0 +1,987 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["./oxlint.base.jsonc"],
+  "plugins": [
+    "vue",
+    "unicorn",
+    "typescript",
+    "jest",
+    "jsx-a11y",
+    "react",
+    "node"
+  ],
+  "jsPlugins": [
+    "eslint-plugin-antfu",
+    "eslint-plugin-unused-imports",
+    "eslint-plugin-wc",
+    "eslint-plugin-compat",
+    "eslint-plugin-boundaries",
+    "eslint-plugin-astro",
+    "eslint-plugin-vue-scoped-css",
+    "eslint-plugin-svelte",
+    "@microsoft/eslint-plugin-sdl",
+    "eslint-plugin-security",
+    "@e18e/eslint-plugin",
+    "@stylistic/eslint-plugin",
+    "eslint-plugin-align-assignments",
+    "eslint-plugin-sonarjs",
+    "eslint-plugin-perfectionist",
+    "eslint-plugin-n",
+    "eslint-plugin-array-func"
+  ],
+  "options": {
+    "typeAware": true
+  },
+  "env": {
+    "builtin": true,
+    "es2026": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "computed": "readonly",
+    "defineEmits": "readonly",
+    "defineExpose": "readonly",
+    "defineProps": "readonly",
+    "onMounted": "readonly",
+    "onUnmounted": "readonly",
+    "reactive": "readonly",
+    "ref": "readonly",
+    "shallowReactive": "readonly",
+    "shallowRef": "readonly",
+    "toRef": "readonly",
+    "toRefs": "readonly",
+    "watch": "readonly",
+    "watchEffect": "readonly",
+    "AudioWorkletGlobalScope": "readonly",
+    "AudioWorkletProcessor": "readonly",
+    "currentFrame": "readonly",
+    "currentTime": "readonly",
+    "registerProcessor": "readonly",
+    "sampleRate": "readonly",
+    "WorkletGlobalScope": "readonly"
+  },
+  "ignorePatterns": ["**/node_modules"],
+  "rules": {
+    "accessor-pairs": [
+      "warn",
+      {
+        "enforceForClassMembers": true,
+        "setWithoutGet": true
+      }
+    ],
+    "antfu/no-top-level-await": "warn",
+    "block-scoped-var": "warn",
+    "new-cap": [
+      "warn",
+      {
+        "capIsNew": false,
+        "newIsCap": true,
+        "properties": true
+      }
+    ],
+    "no-alert": "warn",
+    "no-caller": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn"]
+      }
+    ],
+    "no-extend-native": "warn",
+    "no-extra-bind": "warn",
+    "no-invalid-regexp": "warn",
+    "no-iterator": "warn",
+    "no-multi-str": "warn",
+    "no-new": "warn",
+    "no-new-func": "warn",
+    "no-new-wrappers": "warn",
+    "no-proto": "warn",
+    "no-restricted-globals": [
+      "warn",
+      {
+        "message": "Use `globalThis` instead.",
+        "name": "global"
+      },
+      {
+        "message": "Use `globalThis` instead.",
+        "name": "self"
+      }
+    ],
+    "no-throw-literal": "warn",
+    "no-unmodified-loop-condition": "warn",
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": true,
+        "allowTaggedTemplates": true,
+        "allowTernary": true
+      }
+    ],
+    "no-useless-call": "warn",
+    "no-useless-return": "warn",
+    "no-var": "warn",
+    "prefer-promise-reject-errors": "warn",
+    "prefer-spread": "warn",
+    "symbol-description": "warn",
+    "unicode-bom": ["warn", "never"],
+    "vars-on-top": "warn",
+    "yoda": ["warn", "never"],
+    "wc/no-constructor-attributes": "warn",
+    "wc/no-invalid-element-name": "warn",
+    "wc/no-self-class": "warn",
+    "wc/attach-shadow-constructor": "warn",
+    "wc/guard-super-call": "warn",
+    "wc/no-child-traversal-in-attributechangedcallback": "warn",
+    "wc/no-child-traversal-in-connectedcallback": "warn",
+    "wc/no-closed-shadow-root": "warn",
+    "wc/no-constructor-params": "warn",
+    "wc/no-customized-built-in-elements": "warn",
+    "wc/no-invalid-extends": "warn",
+    "wc/no-typos": "warn",
+    "wc/require-listener-teardown": "warn",
+    "compat/compat": "warn",
+    "boundaries/element-types": ["warn"],
+    "boundaries/dependencies": ["warn"],
+    "boundaries/entry-point": ["warn"],
+    "boundaries/external": ["warn"],
+    "astro/missing-client-only-directive-value": "warn",
+    "astro/no-conflict-set-directives": "warn",
+    "astro/no-deprecated-astro-canonicalurl": "warn",
+    "astro/no-deprecated-astro-fetchcontent": "warn",
+    "astro/no-deprecated-astro-resolve": "warn",
+    "astro/no-deprecated-getentrybyslug": "warn",
+    "astro/no-unused-define-vars-in-style": "warn",
+    "astro/valid-compile": "warn",
+    "astro/no-exports-from-components": "warn",
+    "astro/no-set-html-directive": "warn",
+    "astro/no-set-text-directive": "warn",
+    "astro/no-unsafe-inline-scripts": "warn",
+    "astro/no-unused-css-selector": "warn",
+    "astro/prefer-class-list-directive": "warn",
+    "astro/prefer-object-class-list": "warn",
+    "astro/prefer-split-class-list": "warn",
+    "astro/semi": "warn",
+    "astro/sort-attributes": "warn",
+    "astro/jsx-a11y/alt-text": "warn",
+    "astro/jsx-a11y/anchor-ambiguous-text": "warn",
+    "astro/jsx-a11y/anchor-has-content": "warn",
+    "astro/jsx-a11y/anchor-is-valid": "warn",
+    "astro/jsx-a11y/aria-activedescendant-has-tabindex": "warn",
+    "astro/jsx-a11y/aria-props": "warn",
+    "astro/jsx-a11y/aria-proptypes": "warn",
+    "astro/jsx-a11y/aria-role": "warn",
+    "astro/jsx-a11y/aria-unsupported-elements": "warn",
+    "astro/jsx-a11y/autocomplete-valid": "warn",
+    "astro/jsx-a11y/click-events-have-key-events": "warn",
+    "astro/jsx-a11y/control-has-associated-label": "warn",
+    "astro/jsx-a11y/heading-has-content": "warn",
+    "astro/jsx-a11y/html-has-lang": "warn",
+    "astro/jsx-a11y/iframe-has-title": "warn",
+    "astro/jsx-a11y/img-redundant-alt": "warn",
+    "astro/jsx-a11y/interactive-supports-focus": "warn",
+    "astro/jsx-a11y/label-has-associated-control": "warn",
+    "astro/jsx-a11y/lang": "warn",
+    "astro/jsx-a11y/media-has-caption": "warn",
+    "astro/jsx-a11y/mouse-events-have-key-events": "warn",
+    "astro/jsx-a11y/no-access-key": "warn",
+    "astro/jsx-a11y/no-aria-hidden-on-focusable": "warn",
+    "astro/jsx-a11y/no-autofocus": "warn",
+    "astro/jsx-a11y/no-distracting-elements": "warn",
+    "astro/jsx-a11y/no-interactive-element-to-noninteractive-role": "warn",
+    "astro/jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "astro/jsx-a11y/no-noninteractive-element-to-interactive-role": "warn",
+    "astro/jsx-a11y/no-noninteractive-tabindex": "warn",
+    "astro/jsx-a11y/no-redundant-roles": "warn",
+    "astro/jsx-a11y/no-static-element-interactions": "warn",
+    "astro/jsx-a11y/prefer-tag-over-role": "warn",
+    "astro/jsx-a11y/role-has-required-aria-props": "warn",
+    "astro/jsx-a11y/role-supports-aria-props": "warn",
+    "astro/jsx-a11y/scope": "warn",
+    "astro/jsx-a11y/tabindex-no-positive": "warn",
+    "vue/no-arrow-functions-in-watch": "warn",
+    "vue/no-deprecated-destroyed-lifecycle": "warn",
+    "vue/no-export-in-script-setup": "warn",
+    "vue/no-lifecycle-after-await": "warn",
+    "vue/prefer-import-from-vue": "warn",
+    "vue/valid-define-emits": "warn",
+    "vue/valid-define-props": "warn",
+    "vue-scoped-css/enforce-style-type": "warn",
+    "vue-scoped-css/no-deprecated-deep-combinator": "warn",
+    "vue-scoped-css/no-parent-of-v-global": "warn",
+    "vue-scoped-css/no-parsing-error": "warn",
+    "vue-scoped-css/no-unused-keyframes": "warn",
+    "vue-scoped-css/no-unused-selector": "warn",
+    "vue-scoped-css/require-v-deep-argument": "warn",
+    "vue-scoped-css/require-v-global-argument": "warn",
+    "vue-scoped-css/require-v-slotted-argument": "warn",
+    "vue-scoped-css/v-deep-pseudo-style": "warn",
+    "vue-scoped-css/v-global-pseudo-style": "warn",
+    "vue-scoped-css/v-slotted-pseudo-style": "warn",
+    "svelte/@typescript-eslint/no-unnecessary-condition": "warn",
+    "svelte/block-lang": [
+      "warn",
+      {
+        "script": "ts"
+      }
+    ],
+    "svelte/button-has-type": "warn",
+    "svelte/comment-directive": "warn",
+    "svelte/consistent-selector-style": "warn",
+    "svelte/derived-has-same-inputs-outputs": "warn",
+    "svelte/experimental-require-slot-types": "warn",
+    "svelte/experimental-require-strict-events": "warn",
+    "svelte/first-attribute-linebreak": "warn",
+    "svelte/html-closing-bracket-new-line": "warn",
+    "svelte/html-closing-bracket-spacing": "warn",
+    "svelte/html-quotes": "warn",
+    "svelte/html-self-closing": "warn",
+    "svelte/indent": "warn",
+    "svelte/infinite-reactive-loop": "warn",
+    "svelte/max-attributes-per-line": "warn",
+    "svelte/max-lines-per-block": "warn",
+    "svelte/mustache-spacing": "warn",
+    "svelte/no-add-event-listener": "warn",
+    "svelte/no-at-debug-tags": "warn",
+    "svelte/no-at-html-tags": "warn",
+    "svelte/no-dom-manipulating": "warn",
+    "svelte/no-dupe-else-if-blocks": "warn",
+    "svelte/no-dupe-on-directives": "warn",
+    "svelte/no-dupe-style-properties": "warn",
+    "svelte/no-dupe-use-directives": "warn",
+    "svelte/no-dynamic-slot-name": "warn",
+    "svelte/no-export-load-in-svelte-module-in-kit-pages": "warn",
+    "svelte/no-extra-reactive-curlies": "warn",
+    "svelte/no-goto-without-base": "warn",
+    "svelte/no-ignored-unsubscribe": "warn",
+    "svelte/no-immutable-reactive-statements": "warn",
+    "svelte/no-inline-styles": "warn",
+    "svelte/no-inner-declarations": "warn",
+    "svelte/no-inspect": "warn",
+    "svelte/no-navigation-without-base": "warn",
+    "svelte/no-navigation-without-resolve": "warn",
+    "svelte/no-not-function-handler": "warn",
+    "svelte/no-object-in-text-mustaches": "warn",
+    "svelte/no-raw-special-elements": "warn",
+    "svelte/no-reactive-functions": "warn",
+    "svelte/no-reactive-literals": "warn",
+    "svelte/no-reactive-reassign": "warn",
+    "svelte/no-shorthand-style-property-overrides": "warn",
+    "svelte/no-spaces-around-equal-signs-in-attribute": "warn",
+    "svelte/no-store-async": "warn",
+    "svelte/no-svelte-internal": "warn",
+    "svelte/no-target-blank": "warn",
+    "svelte/no-top-level-browser-globals": "warn",
+    "svelte/no-unknown-style-directive-property": "warn",
+    "svelte/no-unnecessary-state-wrap": "warn",
+    "svelte/no-unused-props": "warn",
+    "svelte/no-unused-svelte-ignore": "warn",
+    "svelte/no-useless-children-snippet": "warn",
+    "svelte/no-useless-mustaches": "warn",
+    "svelte/prefer-class-directive": "warn",
+    "svelte/prefer-const": "warn",
+    "svelte/prefer-destructured-store-props": "warn",
+    "svelte/prefer-style-directive": "warn",
+    "svelte/prefer-svelte-reactivity": "warn",
+    "svelte/prefer-writable-derived": "warn",
+    "svelte/require-each-key": "warn",
+    "svelte/require-event-dispatcher-types": "warn",
+    "svelte/require-event-prefix": "warn",
+    "svelte/require-optimized-style-attribute": "warn",
+    "svelte/require-store-callbacks-use-set-param": "warn",
+    "svelte/require-store-reactive-access": "warn",
+    "svelte/require-stores-init": "warn",
+    "svelte/shorthand-attribute": "warn",
+    "svelte/shorthand-directive": "warn",
+    "svelte/sort-attributes": "warn",
+    "svelte/spaced-html-comment": "warn",
+    "svelte/system": "warn",
+    "svelte/valid-compile": "warn",
+    "svelte/valid-each-key": "warn",
+    "svelte/valid-prop-names-in-kit-pages": "warn",
+    "svelte/valid-style-parse": "warn",
+    "array-callback-return": "warn",
+    "constructor-super": "warn",
+    "default-case-last": "warn",
+    "eqeqeq": ["warn", "smart"],
+    "no-async-promise-executor": "warn",
+    "no-case-declarations": "warn",
+    "no-class-assign": "warn",
+    "no-compare-neg-zero": "warn",
+    "no-cond-assign": ["warn", "always"],
+    "no-const-assign": "warn",
+    "no-control-regex": "warn",
+    "no-debugger": "warn",
+    "no-delete-var": "warn",
+    "no-dupe-keys": "warn",
+    "no-duplicate-case": "warn",
+    "no-empty": [
+      "warn",
+      {
+        "allowEmptyCatch": true
+      }
+    ],
+    "no-empty-character-class": "warn",
+    "no-empty-pattern": "warn",
+    "no-eval": "warn",
+    "no-ex-assign": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-fallthrough": "warn",
+    "no-func-assign": "warn",
+    "no-global-assign": "warn",
+    "no-import-assign": "warn",
+    "no-irregular-whitespace": "warn",
+    "no-labels": [
+      "warn",
+      {
+        "allowLoop": false,
+        "allowSwitch": false
+      }
+    ],
+    "no-lone-blocks": "warn",
+    "no-misleading-character-class": "warn",
+    "no-new-native-nonconstructor": "warn",
+    "no-obj-calls": "warn",
+    "no-prototype-builtins": "warn",
+    "no-regex-spaces": "warn",
+    "no-self-assign": [
+      "warn",
+      {
+        "props": true
+      }
+    ],
+    "no-self-compare": "warn",
+    "no-sequences": "warn",
+    "no-shadow-restricted-names": "warn",
+    "no-sparse-arrays": "warn",
+    "no-template-curly-in-string": "warn",
+    "no-this-before-super": "warn",
+    "no-undef": "warn",
+    "no-unexpected-multiline": "warn",
+    "no-unneeded-ternary": [
+      "warn",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "no-unreachable": "warn",
+    "no-unsafe-finally": "warn",
+    "no-unsafe-negation": "warn",
+    "no-useless-backreference": "warn",
+    "no-useless-catch": "warn",
+    "no-useless-computed-key": "warn",
+    "no-useless-rename": "warn",
+    "no-with": "warn",
+    "prefer-const": [
+      "warn",
+      {
+        "destructuring": "all",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+    "prefer-exponentiation-operator": "warn",
+    "prefer-rest-params": "warn",
+    "prefer-template": "warn",
+    "use-isnan": [
+      "warn",
+      {
+        "enforceForIndexOf": true,
+        "enforceForSwitchCase": true
+      }
+    ],
+    "valid-typeof": [
+      "warn",
+      {
+        "requireStringLiterals": true
+      }
+    ],
+    "@microsoft/sdl/no-angular-bypass-sanitizer": "warn",
+    "@microsoft/sdl/no-angularjs-enable-svg": "warn",
+    "@microsoft/sdl/no-angularjs-sanitization-whitelist": "warn",
+    "@microsoft/sdl/no-angularjs-bypass-sce": "warn",
+    "@microsoft/sdl/no-cookies": "warn",
+    "@microsoft/sdl/no-document-domain": "warn",
+    "@microsoft/sdl/no-document-write": "warn",
+    "@microsoft/sdl/no-html-method": "warn",
+    "@microsoft/sdl/no-inner-html": "warn",
+    "@microsoft/sdl/no-insecure-url": "warn",
+    "@microsoft/sdl/no-msapp-exec-unsafe": "warn",
+    "@microsoft/sdl/no-postmessage-star-origin": "warn",
+    "@microsoft/sdl/no-winjs-html-unsafe": "warn",
+    "@microsoft/sdl/no-electron-node-integration": "warn",
+    "@microsoft/sdl/no-unsafe-alloc": "warn",
+    "react/no-danger": "warn",
+    "react/jsx-no-target-blank": [
+      "warn",
+      {
+        "allowReferrer": false,
+        "enforceDynamicLinks": "always",
+        "warnOnSpreadAttributes": true
+      }
+    ],
+    "react/iframe-missing-sandbox": "warn",
+    "security/detect-buffer-noassert": "warn",
+    "security/detect-child-process": "warn",
+    "security/detect-disable-mustache-escape": "warn",
+    "security/detect-eval-with-expression": "warn",
+    "security/detect-new-buffer": "warn",
+    "security/detect-no-csrf-before-method-override": "warn",
+    "security/detect-non-literal-fs-filename": "warn",
+    "security/detect-non-literal-regexp": "warn",
+    "security/detect-non-literal-require": "warn",
+    "security/detect-object-injection": "warn",
+    "security/detect-possible-timing-attacks": "warn",
+    "security/detect-pseudoRandomBytes": "warn",
+    "security/detect-unsafe-regex": "warn",
+    "security/detect-bidi-characters": "warn",
+    "e18e/prefer-array-at": "warn",
+    "e18e/prefer-array-fill": "warn",
+    "e18e/prefer-includes": "warn",
+    "e18e/prefer-array-to-reversed": "warn",
+    "e18e/prefer-array-to-sorted": "warn",
+    "e18e/prefer-array-to-spliced": "warn",
+    "e18e/prefer-nullish-coalescing": "warn",
+    "e18e/prefer-object-has-own": "warn",
+    "e18e/prefer-spread-syntax": "warn",
+    "e18e/prefer-url-canparse": "warn",
+    "e18e/ban-dependencies": "warn",
+    "e18e/prefer-array-from-map": "warn",
+    "e18e/prefer-timer-args": "warn",
+    "e18e/prefer-date-now": "warn",
+    "e18e/prefer-regex-test": "warn",
+    "e18e/prefer-array-some": "warn",
+    "e18e/prefer-static-regex": "warn",
+    "node/no-exports-assign": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.?([cm])[jt]s?(x)"],
+      "rules": {
+        "jsdoc/check-access": "warn",
+        "jsdoc/check-property-names": "warn",
+        "jsdoc/empty-tags": "warn",
+        "jsdoc/implements-on-classes": "warn",
+        "jsdoc/no-defaults": "warn",
+        "jsdoc/require-param-name": "warn",
+        "jsdoc/require-property": "warn",
+        "jsdoc/require-property-description": "warn",
+        "jsdoc/require-property-name": "warn",
+        "jsdoc/require-returns-description": "warn"
+      },
+      "plugins": ["jsdoc"]
+    },
+    {
+      "files": ["**/*.md/**/*.?([cm])[jt]s?(x)"],
+      "rules": {
+        "antfu/no-top-level-await": "off",
+        "e18e/prefer-static-regex": "off",
+        "no-alert": "off",
+        "no-console": "off",
+        "no-unused-expressions": "off",
+        "@stylistic/eslint-plugin/comma-dangle": "off",
+        "@stylistic/eslint-plugin/eol-last": "off",
+        "@stylistic/eslint-plugin/padding-line-between-statements": "off",
+        "unicode-bom": "off"
+      },
+      "jsPlugins": [
+        "eslint-plugin-antfu",
+        "@e18e/eslint-plugin",
+        "@stylistic/eslint-plugin",
+        "eslint-plugin-unused-imports"
+      ]
+    },
+    {
+      "files": ["**/*.?([cm])[jt]s?(x)"],
+      "rules": {
+        "node/handle-callback-err": ["warn", "^(err|error)$"],
+        "node/no-new-require": "warn",
+        "node/no-path-concat": "warn"
+      }
+    },
+    {
+      "files": ["**/*.toml"],
+      "rules": {
+        "@stylistic/eslint-plugin/spaced-comment": "off",
+        "toml/comma-style": "warn",
+        "toml/keys-order": "warn",
+        "toml/no-space-dots": "warn",
+        "toml/no-unreadable-number-separator": "warn",
+        "toml/precision-of-fractional-seconds": "warn",
+        "toml/precision-of-integer": "warn",
+        "toml/tables-order": "warn",
+        "toml/vue-custom-block/no-parsing-error": "warn",
+        "toml/array-bracket-newline": "warn",
+        "toml/array-bracket-spacing": "warn",
+        "toml/array-element-newline": "warn",
+        "toml/indent": ["warn", 2],
+        "toml/inline-table-curly-spacing": "warn",
+        "toml/key-spacing": "warn",
+        "toml/padding-line-between-pairs": "warn",
+        "toml/padding-line-between-tables": "warn",
+        "toml/quoted-keys": "warn",
+        "toml/spaced-comment": "warn",
+        "toml/table-bracket-spacing": "warn"
+      },
+      "jsPlugins": ["@stylistic/eslint-plugin", "eslint-plugin-toml"]
+    },
+    {
+      "files": ["**/*.vue"],
+      "rules": {
+        "vue/no-multiple-slot-args": "warn",
+        "vue/no-required-prop-with-default": "warn",
+        "antfu/no-top-level-await": "off"
+      },
+      "jsPlugins": ["eslint-plugin-antfu"]
+    },
+    {
+      "files": ["**/*.y?(a)ml"],
+      "rules": {
+        "@stylistic/eslint-plugin/spaced-comment": "off",
+        "yml/block-mapping": "warn",
+        "yml/block-sequence": "warn",
+        "yml/no-empty-key": "warn",
+        "yml/no-empty-sequence-entry": "warn",
+        "yml/no-irregular-whitespace": "warn",
+        "yml/plain-scalar": "warn",
+        "yml/vue-custom-block/no-parsing-error": "warn",
+        "yml/block-mapping-question-indicator-newline": "warn",
+        "yml/block-sequence-hyphen-indicator-newline": "warn",
+        "yml/flow-mapping-curly-newline": "warn",
+        "yml/flow-mapping-curly-spacing": "warn",
+        "yml/flow-sequence-bracket-newline": "warn",
+        "yml/flow-sequence-bracket-spacing": "warn",
+        "yml/indent": ["warn", 2],
+        "yml/key-spacing": "warn",
+        "yml/no-tab-indent": "warn",
+        "yml/quotes": [
+          "warn",
+          {
+            "avoidEscape": true,
+            "prefer": "single"
+          }
+        ],
+        "yml/spaced-comment": "warn"
+      },
+      "jsPlugins": ["@stylistic/eslint-plugin", "eslint-plugin-yml"]
+    },
+    {
+      "files": ["**/*.astro"],
+      "rules": {
+        "antfu/no-top-level-await": "off",
+        "@stylistic/eslint-plugin/indent": "off",
+        "@stylistic/eslint-plugin/jsx-closing-tag-location": "off",
+        "@stylistic/eslint-plugin/jsx-one-expression-per-line": "off",
+        "@stylistic/eslint-plugin/no-multiple-empty-lines": "off"
+      },
+      "jsPlugins": [
+        "eslint-plugin-antfu",
+        "eslint-plugin-astro",
+        "@stylistic/eslint-plugin"
+      ],
+      "globals": {
+        "Fragment": "readonly"
+      },
+      "env": {
+        "astro": true
+      }
+    },
+    {
+      "files": [
+        "**.test*",
+        "**.js",
+        "**.ts",
+        "**.svelte",
+        "**.astro",
+        "**.vue",
+        ".json",
+        ".jsonc"
+      ],
+      "rules": {
+        "antfu/consistent-chaining": "warn",
+        "antfu/consistent-list-newline": "warn",
+        "antfu/import-dedupe": "warn",
+        "antfu/no-top-level-await": "off",
+        "capitalized-comments": "off",
+        "drizzle/enforce-delete-with-where": "off",
+        "func-style": ["warn", "expression"],
+        "import/unambiguous": "off",
+        "jest/require-hook": "off",
+        "max-lines": "off",
+        "max-statements": [
+          "off",
+          {
+            "max": 15
+          }
+        ],
+        "no-inline-comments": "off",
+        "no-ternary": "off",
+        "no-undefined": "off",
+        "no-warning-comments": "off",
+        "prefer-arrow-functions/prefer-arrow-functions": [
+          "warn",
+          {
+            "allowNamedFunctions": false,
+            "classPropertiesAllowed": false,
+            "disallowPrototype": true,
+            "returnStyle": "implicit",
+            "singleReturnOnly": false
+          }
+        ],
+        "sort-keys": "off",
+        "@stylistic/eslint-plugin/quotes": "off",
+        "total-functions/require-strict-mode": "off",
+        "write-good-comments/write-good-comments": "warn",
+        "xss/no-mixed-html": "off"
+      },
+      "jsPlugins": [
+        "eslint-plugin-antfu",
+        "eslint-plugin-astro",
+        "eslint-plugin-compat",
+        "eslint-plugin-drizzle",
+        "eslint-plugin-prefer-arrow-functions",
+        "@stylistic/eslint-plugin",
+        "eslint-plugin-total-functions",
+        "eslint-plugin-unused-imports",
+        "eslint-plugin-write-good-comments",
+        "eslint-plugin-xss"
+      ],
+      "plugins": ["import"]
+    },
+    {
+      "files": ["**/*.test*"],
+      "rules": {
+        "max-lines-per-function": "off"
+      }
+    },
+    {
+      "files": ["**/*.html"],
+      "rules": {
+        "@html-eslint/require-lang": "warn",
+        "@html-eslint/require-img-alt": "warn",
+        "@html-eslint/require-doctype": "warn",
+        "@html-eslint/require-title": "warn",
+        "@html-eslint/no-duplicate-id": "warn",
+        "@html-eslint/no-inline-styles": "warn",
+        "@html-eslint/no-multiple-h1": "warn",
+        "@html-eslint/no-extra-spacing-attrs": "warn",
+        "@html-eslint/no-extra-spacing-text": "warn",
+        "@html-eslint/attrs-newline": "warn",
+        "@html-eslint/element-newline": "warn",
+        "@html-eslint/no-skip-heading-levels": "warn",
+        "@html-eslint/require-li-container": "warn",
+        "@html-eslint/indent": "warn",
+        "@html-eslint/quotes": "warn",
+        "@html-eslint/id-naming-convention": "warn",
+        "@html-eslint/no-obsolete-tags": "warn",
+        "@html-eslint/require-attrs": "warn",
+        "@html-eslint/require-closing-tags": "warn",
+        "@html-eslint/require-meta-description": "warn",
+        "@html-eslint/require-frame-title": "warn",
+        "@html-eslint/no-non-scalable-viewport": "warn",
+        "@html-eslint/no-positive-tabindex": "warn",
+        "@html-eslint/require-meta-viewport": "warn",
+        "@html-eslint/require-meta-charset": "warn",
+        "@html-eslint/no-target-blank": "warn",
+        "@html-eslint/no-duplicate-attrs": "warn",
+        "@html-eslint/no-abstract-roles": "warn",
+        "@html-eslint/require-button-type": "warn",
+        "@html-eslint/no-aria-hidden-body": "warn",
+        "@html-eslint/no-aria-hidden-on-focusable": "warn",
+        "@html-eslint/no-multiple-empty-lines": "warn",
+        "@html-eslint/no-accesskey-attrs": "warn",
+        "@html-eslint/no-restricted-attrs": "warn",
+        "@html-eslint/no-trailing-spaces": "warn",
+        "@html-eslint/no-restricted-attr-values": "warn",
+        "@html-eslint/no-script-style-type": "warn",
+        "@html-eslint/no-heading-inside-button": "warn",
+        "@html-eslint/no-invalid-role": "warn",
+        "@html-eslint/no-nested-interactive": "warn",
+        "@html-eslint/lowercase": "warn",
+        "@html-eslint/require-open-graph-protocol": "warn",
+        "@html-eslint/require-form-method": "warn",
+        "@html-eslint/sort-attrs": "warn",
+        "@html-eslint/prefer-https": "warn",
+        "@html-eslint/require-input-label": "warn",
+        "@html-eslint/max-element-depth": "warn",
+        "@html-eslint/require-explicit-size": "warn",
+        "@html-eslint/use-baseline": "warn",
+        "@html-eslint/no-duplicate-class": "warn",
+        "@html-eslint/no-empty-headings": "warn",
+        "@html-eslint/no-invalid-entity": "warn",
+        "@html-eslint/no-duplicate-in-head": "warn",
+        "@html-eslint/no-ineffective-attrs": "warn",
+        "@html-eslint/no-restricted-tags": "warn",
+        "@html-eslint/no-whitespace-only-children": "warn",
+        "@html-eslint/no-obsolete-attrs": "warn",
+        "@html-eslint/class-spacing": "warn",
+        "@html-eslint/css-no-empty-blocks": "warn",
+        "@html-eslint/no-redundant-role": "warn",
+        "@html-eslint/no-invalid-attr-value": "warn",
+        "@html-eslint/head-order": "warn",
+        "@html-eslint/require-details-summary": "warn"
+      },
+      "jsPlugins": ["@html-eslint/eslint-plugin"]
+    },
+    {
+      "files": ["*.astro", "**/*.astro"],
+      "globals": {
+        "Fragment": "readonly"
+      },
+      "env": {
+        "astro": true
+      }
+    },
+    {
+      "files": ["**/*.astro"],
+      "rules": {
+        "astro/semi": "off"
+      },
+      "jsPlugins": ["eslint-plugin-astro"]
+    },
+    {
+      "files": ["**/*.astro/*.ts"],
+      "rules": {
+        "astro/semi": ["off", "never"]
+      },
+      "jsPlugins": ["eslint-plugin-astro"]
+    },
+    {
+      "files": ["*.vue", "**/*.vue"],
+      "rules": {
+        "vuejs-accessibility/alt-text": "warn",
+        "vuejs-accessibility/anchor-has-content": "warn",
+        "vuejs-accessibility/aria-props": "warn",
+        "vuejs-accessibility/aria-role": "warn",
+        "vuejs-accessibility/aria-unsupported-elements": "warn",
+        "vuejs-accessibility/click-events-have-key-events": "warn",
+        "vuejs-accessibility/form-control-has-label": "warn",
+        "vuejs-accessibility/heading-has-content": "warn",
+        "vuejs-accessibility/iframe-has-title": "warn",
+        "vuejs-accessibility/interactive-supports-focus": "warn",
+        "vuejs-accessibility/label-has-for": [
+          "warn",
+          {
+            "controlComponents": [
+              "Field",
+              "GInput",
+              "NativeSelect",
+              "LabelInput"
+            ],
+            "required": {
+              "some": ["nesting", "id"]
+            }
+          }
+        ],
+        "vuejs-accessibility/media-has-caption": "warn",
+        "vuejs-accessibility/mouse-events-have-key-events": "warn",
+        "vuejs-accessibility/no-access-key": "warn",
+        "vuejs-accessibility/no-autofocus": "warn",
+        "vuejs-accessibility/no-distracting-elements": "warn",
+        "vuejs-accessibility/no-redundant-roles": "warn",
+        "vuejs-accessibility/no-static-element-interactions": "warn",
+        "vuejs-accessibility/role-has-required-aria-props": "warn",
+        "vuejs-accessibility/tabindex-no-positive": "warn",
+        "functional/immutable-data": "off",
+        "import/first": "off",
+        "vue/define-emits-declaration": "warn",
+        "vue/define-props-declaration": "warn",
+        "vue/define-props-destructuring": "warn",
+        "vue/max-props": "warn",
+        "vue/no-import-compiler-macros": "warn",
+        "vue/require-typed-ref": "warn",
+        "vuejs-accessibility/no-aria-hidden-on-focusable": "warn",
+        "vuejs-accessibility/no-role-presentation-on-focusable": "warn"
+      },
+      "jsPlugins": [
+        "eslint-plugin-vuejs-accessibility",
+        "eslint-plugin-functional",
+        "eslint-plugin-vue-scoped-css"
+      ],
+      "plugins": ["import"]
+    },
+    {
+      "files": ["*.svelte", "**/*.svelte"],
+      "jsPlugins": ["eslint-plugin-svelte"]
+    },
+    {
+      "files": ["**/*.json", "*.json"],
+      "rules": {
+        "perfectionist/sort-variable-declarations": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-intersection-types": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-import-attributes": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-export-attributes": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-heritage-clauses": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-array-includes": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-named-imports": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-named-exports": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-object-types": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-union-types": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-switch-case": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-decorators": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-interfaces": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-jsx-props": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-modules": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-classes": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-exports": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-objects": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-enums": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-sets": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ],
+        "perfectionist/sort-maps": [
+          "warn",
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ]
+      },
+      "jsPlugins": ["eslint-plugin-perfectionist", "@stylistic/eslint-plugin"]
+    },
+    {
+      "files": [
+        "**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)",
+        "**/*.story.@(ts|tsx|js|jsx|mjs|cjs)"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off",
+        "storybook/await-interactions": "warn",
+        "storybook/context-in-play-function": "warn",
+        "storybook/default-exports": "warn",
+        "storybook/hierarchy-separator": "warn",
+        "storybook/no-redundant-story-name": "warn",
+        "storybook/prefer-pascal-case": "warn",
+        "storybook/story-exports": "warn",
+        "storybook/use-storybook-expect": "warn",
+        "storybook/use-storybook-testing-library": "warn"
+      },
+      "jsPlugins": ["eslint-plugin-storybook"],
+      "plugins": ["import"]
+    },
+    {
+      "files": [".storybook/main.@(js|cjs|mjs|ts)"],
+      "rules": {
+        "storybook/no-uninstalled-addons": "warn"
+      },
+      "jsPlugins": ["eslint-plugin-storybook"]
+    }
+  ]
+}

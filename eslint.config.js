@@ -41,6 +41,11 @@ import writeGoodComments from "eslint-plugin-write-good-comments"
 import globals from "globals"
 import tseslint from "typescript-eslint"
 
+import e18e from "@e18e/eslint-plugin"
+import pluginMicrosoftSdl from "@microsoft/eslint-plugin-sdl"
+import nodePlugin from "eslint-plugin-n"
+import pluginSecurity from "eslint-plugin-security"
+
 const antfu = await combine(
   // comments(),
   ignores(),
@@ -70,6 +75,10 @@ export default [
   // NOTE: Opinionated
   ...antfu,
   // NOTE: Global
+    nodePlugin.configs["flat/recommended-script"],
+    ...pluginMicrosoftSdl.configs.recommended,
+    pluginSecurity.configs.recommended,
+    e18e.configs.recommended,
   // NOTE: Main config
   {
     files: [
