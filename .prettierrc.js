@@ -8,17 +8,17 @@ export default {
   ],
   overrides: [
     {
-      files: "*.astro",
+      files  : "*.astro",
       options: {
         parser: "astro",
       },
     },
     { files: "*.svelte", options: { parser: "svelte" } },
   ],
-  semi: false,
-  tabWidth: 2,
-  printWidth: 80,
-  arrowParens: "avoid",
-  bracketSameLine: false,
+  semi                     : false,
+  tabWidth                 : 2,
+  printWidth               : 80,
+  arrowParens              : "avoid",
+  bracketSameLine          : false,
   htmlWhitespaceSensitivity: "ignore",
 }
