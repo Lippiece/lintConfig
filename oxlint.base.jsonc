@@ -109,6 +109,10 @@
     "no-useless-spread": 1,
     "group-exports": 1,
     "prefer-await-to-then": 1,
+    "typescript/prefer-readonly-parameter-types": 0,
+    "typescript/promise-function-async": 0,
+    "typescript/prefer-nullish-coalescing": 0,
+    "typescript/strict-boolean-expressions": 0,
     "no-null": 1,
   },
 }
