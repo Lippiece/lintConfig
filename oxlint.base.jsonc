@@ -12,17 +12,8 @@
   "jsPlugins": [
     "@stylistic/eslint-plugin",
     "eslint-plugin-align-assignments",
-    "eslint-plugin-sonarjs",
     "eslint-plugin-perfectionist",
     "eslint-plugin-array-func",
-  ],
-  "overrides": [
-    {
-      "files": ["*.astro", "*.svelte"],
-      "rules": {
-        "no-unused-vars": "off",
-      },
-    },
   ],
   "plugins": [
     "typescript",
@@ -84,8 +75,6 @@
         "skipComments": true,
       },
     ],
-    "n/no-missing-import": 0,
-    "n/no-process-exit": 0,
     "no-async-await": 0,
     "no-optional-chaining": 0,
     "no-rest-spread-properties": 0,
@@ -94,8 +83,6 @@
     "no-undefined": 0,
     "no-useless-default-assignment": 0,
     "prefer-default-export": 0,
-    "sonarjs/array-constructor": 1,
-    "sonarjs/prefer-immediate-return": 1,
     "sort-imports": 0,
     "strict-void-return": 0,
     "typescript/explicit-module-boundary-types": 0,
