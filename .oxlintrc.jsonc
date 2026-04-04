@@ -138,7 +138,6 @@
     "no-sparse-arrays": "warn",
     "no-template-curly-in-string": "warn",
     "no-this-before-super": "warn",
-    "no-undef": "warn",
     "no-unexpected-multiline": "warn",
     "no-unneeded-ternary": [
       "warn",
