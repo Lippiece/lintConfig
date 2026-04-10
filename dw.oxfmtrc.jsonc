@@ -1,5 +1,8 @@
 {
   "$schema": "/home/lippiece/node_modules/oxfmt/configuration_schema.json",
+  "singleAttributePerLine": true,
+  "sortTailwindcss": true,
+  "sortImports": true,
   "semi": false,
   "tabWidth": 2,
   "singleQuote": true,
@@ -7,10 +10,5 @@
   "trailingComma": "none",
   "arrowParens": "always",
   "bracketSameLine": false,
-  "quoteProps": "preserve",
-  "htmlWhitespaceSensitivity": "ignore",
-  "experimentalTailwindcss": {
-    "stylesheet": "/home/lippiece/.config/lintConfig/stylesheet.css",
-    "attributes": ["class", ":class", "className"],
-  },
+  "quoteProps": "preserve"
 }

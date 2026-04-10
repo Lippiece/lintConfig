@@ -5,9 +5,7 @@
   "printWidth": 80,
   "arrowParens": "avoid",
   "bracketSameLine": false,
-  "htmlWhitespaceSensitivity": "ignore",
   "sortImports": { "newlinesBetween": true },
-  "sortTailwindcss": {
-    "config": "/home/lippiece/.config/lintConfig/stylesheet.css",
-  },
+  "sortTailwindcss": true,
+  "singleAttributePerLine": true,
 }
