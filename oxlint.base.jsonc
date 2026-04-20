@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "options": {
+    "typeAware": true,
+  },
   "categories": {
     "correctness": "warn",
     "nursery": "warn",
@@ -40,6 +43,7 @@
     ],
     "align-assignments/align-assignments": 1,
     "array-func/avoid-reverse": 1,
+    "no-void": 0,
     "array-func/from-map": 1,
     "array-func/no-unnecessary-this-arg": 1,
     "array-func/prefer-flat": 1,
