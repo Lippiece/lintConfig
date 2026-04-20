@@ -1,13 +1,12 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "extends": ["./oxlint.base.jsonc"],
+  "extends": ["/home/lippiece/.config/lintConfig/oxlint.base.jsonc"],
   "jsPlugins": [
     "eslint-plugin-boundaries",
     "eslint-plugin-security",
     "@e18e/eslint-plugin",
-    "eslint-plugin-prefer-arrow-functions",
     "eslint-plugin-total-functions",
-    "eslint-plugin-xss"
+    "eslint-plugin-xss",
 
     // WARN: 1.5s
     // "@microsoft/eslint-plugin-sdl",
@@ -17,8 +16,8 @@
       "warn",
       {
         "enforceForClassMembers": true,
-        "setWithoutGet": true
-      }
+        "setWithoutGet": true,
+      },
     ],
     "block-scoped-var": "warn",
     "new-cap": [
@@ -26,16 +25,16 @@
       {
         "capIsNew": false,
         "newIsCap": true,
-        "properties": true
-      }
+        "properties": true,
+      },
     ],
     "no-alert": "warn",
     "no-caller": "warn",
     "no-console": [
       "warn",
       {
-        "allow": ["warn"]
-      }
+        "allow": ["warn"],
+      },
     ],
     "no-extend-native": "warn",
     "no-extra-bind": "warn",
@@ -50,12 +49,12 @@
       "warn",
       {
         "message": "Use `globalThis` instead.",
-        "name": "global"
+        "name": "global",
       },
       {
         "message": "Use `globalThis` instead.",
-        "name": "self"
-      }
+        "name": "self",
+      },
     ],
     "no-throw-literal": "warn",
     "no-unmodified-loop-condition": "warn",
@@ -64,8 +63,8 @@
       {
         "allowShortCircuit": true,
         "allowTaggedTemplates": true,
-        "allowTernary": true
-      }
+        "allowTernary": true,
+      },
     ],
     "no-useless-call": "warn",
     "no-useless-return": "warn",
@@ -100,8 +99,8 @@
     "no-empty": [
       "warn",
       {
-        "allowEmptyCatch": true
-      }
+        "allowEmptyCatch": true,
+      },
     ],
     "no-empty-character-class": "warn",
     "no-empty-pattern": "warn",
@@ -117,8 +116,8 @@
       "warn",
       {
         "allowLoop": false,
-        "allowSwitch": false
-      }
+        "allowSwitch": false,
+      },
     ],
     "no-lone-blocks": "warn",
     "no-misleading-character-class": "warn",
@@ -129,8 +128,8 @@
     "no-self-assign": [
       "warn",
       {
-        "props": true
-      }
+        "props": true,
+      },
     ],
     "no-self-compare": "warn",
     "no-sequences": "warn",
@@ -142,8 +141,8 @@
     "no-unneeded-ternary": [
       "warn",
       {
-        "defaultAssignment": false
-      }
+        "defaultAssignment": false,
+      },
     ],
     "no-unreachable": "warn",
     "no-unsafe-finally": "warn",
@@ -157,8 +156,8 @@
       "warn",
       {
         "destructuring": "all",
-        "ignoreReadBeforeAssign": true
-      }
+        "ignoreReadBeforeAssign": true,
+      },
     ],
     "prefer-exponentiation-operator": "warn",
     "prefer-rest-params": "warn",
@@ -167,14 +166,14 @@
       "warn",
       {
         "enforceForIndexOf": true,
-        "enforceForSwitchCase": true
-      }
+        "enforceForSwitchCase": true,
+      },
     ],
     "valid-typeof": [
       "warn",
       {
-        "requireStringLiterals": true
-      }
+        "requireStringLiterals": true,
+      },
     ],
 
     // WARN: 1.5 s
@@ -229,36 +228,25 @@
 
     "node/no-exports-assign": "warn",
 
-        "capitalized-comments": "off",
-        "func-style": ["warn", "expression"],
-        "import/unambiguous": "off",
-        "jest/require-hook": "off",
-        "max-lines": "off",
-        "max-statements": [
-          "off",
-          {
-            "max": 15
-          }
-        ],
-        "no-inline-comments": "off",
-        "no-ternary": "off",
-        "no-undefined": "off",
-        "no-warning-comments": "off",
+    "capitalized-comments": "off",
+    "func-style": ["warn", "expression"],
+    "import/unambiguous": "off",
+    "jest/require-hook": "off",
+    "max-lines": "off",
+    "max-statements": [
+      "off",
+      {
+        "max": 15,
+      },
+    ],
+    "no-inline-comments": "off",
+    "no-ternary": "off",
+    "no-undefined": "off",
+    "no-warning-comments": "off",
 
-        "prefer-arrow-functions/prefer-arrow-functions": [
-          "warn",
-          {
-            "allowNamedFunctions": false,
-            "classPropertiesAllowed": false,
-            "disallowPrototype": true,
-            "returnStyle": "implicit",
-            "singleReturnOnly": false
-          }
-        ],
-
-        "sort-keys": "off",
-        "total-functions/require-strict-mode": "off",
-        "xss/no-mixed-html": "off"
+    "sort-keys": "off",
+    "total-functions/require-strict-mode": "off",
+    "xss/no-mixed-html": "off",
   },
 
   // WARN: 1s

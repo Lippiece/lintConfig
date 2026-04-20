@@ -86,7 +86,6 @@
     "sort-imports": 0,
     "strict-void-return": 0,
     "typescript/explicit-module-boundary-types": 0,
-    "typescript/no-floating-promises": 0,
     "unicorn/no-array-for-each": 0,
     "unicorn/no-null": 0,
     "unicorn/no-useless-spread": 0,
