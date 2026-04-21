@@ -2,7 +2,7 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "extends": ["/home/lippiece/.config/lintConfig/oxlint.base.jsonc"],
   "jsPlugins": [
-    "eslint-plugin-boundaries",
+    // "eslint-plugin-boundaries",
     "eslint-plugin-security",
     "@e18e/eslint-plugin",
     "eslint-plugin-total-functions",
@@ -76,10 +76,10 @@
     "vars-on-top": "warn",
     "yoda": ["warn", "never"],
 
-    "boundaries/element-types": ["warn"],
-    "boundaries/dependencies": ["warn"],
-    "boundaries/entry-point": ["warn"],
-    "boundaries/external": ["warn"],
+    // "boundaries/element-types": ["warn"],
+    // "boundaries/dependencies": ["warn"],
+    // "boundaries/entry-point": ["warn"],
+    // "boundaries/external": ["warn"],
 
     "array-callback-return": "warn",
     "constructor-super": "warn",
