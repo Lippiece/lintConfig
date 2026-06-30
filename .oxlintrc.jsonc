@@ -247,6 +247,13 @@
     "sort-keys": "off",
     "total-functions/require-strict-mode": "off",
     "xss/no-mixed-html": "off",
+
+    "complexity": [
+      1,
+      {
+        "max": 5,
+      },
+    ],
   },
 
   // WARN: 1s
