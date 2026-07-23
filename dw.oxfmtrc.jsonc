@@ -7,8 +7,8 @@
   "tabWidth": 2,
   "singleQuote": true,
   "printWidth": 80,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "arrowParens": "always",
   "bracketSameLine": false,
-  "quoteProps": "preserve"
+  "quoteProps": "preserve",
 }
