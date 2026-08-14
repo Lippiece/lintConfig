@@ -104,5 +104,6 @@
     "typescript/prefer-nullish-coalescing": 0,
     "typescript/strict-boolean-expressions": 0,
     "no-null": 1,
+    "node/no-top-level-await": 0,
   },
 }
